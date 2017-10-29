@@ -4,8 +4,8 @@ module Main exposing (..)
 have everything set up properly.
 -}
 
-import Html exposing (Html, div, h1, header, text)
-import Html.Attributes exposing (class)
+import Html exposing (Html, div, h1, header, text, img)
+import Html.Attributes exposing (class, src, width)
 
 
 main : Program Never Model Msg
@@ -30,8 +30,9 @@ type alias Model =
 view : Model -> Html Msg
 view model =
     div [ class "content" ]
-        [ header [] [ h1 [] [ text "Introduction to Elm" ] ]
-        , div [ class "intro-message" ] [ text "You are good to go." ]
+        [ img [ src "elm-detroit.png", class "logo" ] []
+        , header [] [ h1 [] [  text "Introduction to Elm" ] ]
+        , div [ class "intro-message" ] [ text "You are good to go!" ]
         ]
 
 

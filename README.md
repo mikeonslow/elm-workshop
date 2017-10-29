@@ -61,6 +61,9 @@ On your computer, complete the following steps:
     
     A browser should open, and you should see this in it:
 
+    ![alt text](https://github.com/mikeonslow/elm-workshop/blob/master/static/verification-success.png "Verification Image")
 
+
+   
 
 
