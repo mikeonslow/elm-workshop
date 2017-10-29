@@ -23,11 +23,11 @@
 
 ## Resources
 
-### Community
+#### Community
 - Slack: https://elmlang.herokuapp.com/ 
 - Reddit: https://www.reddit.com/r/elm/
 
-### Learning
+#### Learning
 - Examples from the official site: http://elm-lang.org/examples 
 - The Official Guide: https://guide.elm-lang.org/ 
 - Ellie App (In browser editor): https://ellie-app.com/ 
@@ -35,22 +35,4 @@
 - Elm Town (Podcast): https://elmtown.github.io/ 
 - Awesome Elm (collection of resources and libraries): https://github.com/isRuslan/awesome-elm
 
-
-
-
-
-## Getting Started with Elm
-
-### Installing the Elm platform
-Navigate your web browser to [https://guide.elm-lang.org/install.html#install]()
-
-### Setting up the Project
-On your computer, complete the following steps:
-1. Navigate to a directory on your computer where you have permission to create and edit directories and files
-2. Run `git clone https://github.com/Elm-Detroit/elmfolio.git elmfolio`
-3. Run `cd elmfolio`
-4. Run `elm package install` (this either installs the packages specified in elm-package.json or creates elm-package.json with the core modules)
-
-### Community Resources
-- Slack: https://elmlang.herokuapp.com/ 
-- Reddit: https://www.reddit.com/r/elm/
+Go to [Part 2](https://github.com/mikeonslow/elm-workshop/blob/master/parts/part2.md)
