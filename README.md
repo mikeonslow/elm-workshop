@@ -59,12 +59,11 @@ On your computer, complete the following steps:
 
 2. Once that succeeds, run this to verify everything:
    
-   `elm-live Main.elm --open --pushstate --output=elm.js`
+   `elm-live Main.elm --open --pushstate --output=static/js/elm.js`
     
     A browser should open, and you should see this in it:
 
-<img src="https://github.com/mikeonslow/elm-workshop/blob/master/static/images/verification-success.png" width="350" alt="Verification Image" />
-
+    <img src="https://github.com/Elm-Detroit/elm-workshop/blob/master/static/images/verification-success.png" width="350" alt="Verification Image" />
    
 
 
