@@ -23,6 +23,8 @@ For this class, you will need to bring and prepare:
 - A GitHub account [https://github.com/]() 
 
 - A way to quickly clone GitHub repos (command line, SourceTree, GitHub Desktop, etc.)
+  
+  git installers: https://git-scm.com/downloads
 
 ### Setup 
 
