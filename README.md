@@ -18,13 +18,13 @@ To achieve that goal, we will cover:
 
 For this class, you will need to bring and prepare:
 
-- A laptop with internet access
+- A laptop with internet access (we'll have WiFi access at the events)
 
-- A GitHub account [https://github.com/]() 
+- A GitHub account <a href="https://github.com" target="_blank">https://github.com</a>
 
 - A way to quickly clone GitHub repos (command line, SourceTree, GitHub Desktop, etc.)
   
-  git installers: https://git-scm.com/downloads
+  git installers: <a href="https://git-scm.com/downloads" target="_blank">https://git-scm.com/downloads</a>
 
 ### Setup 
 
@@ -32,7 +32,7 @@ Before the workshop, you'll want to make sure that your enviroment and project a
 
 #### Environment
  
-1. Install [Node.js 6.9.2](https://nodejs.org) or higher
+1. Install <a href="https://nodejs.org" target="_blank">Node.js 6.9.2</a> or higher
 
 2. Install the Elm Runtime `npm install -g elm`
 
@@ -63,8 +63,7 @@ On your computer, complete the following steps:
     
     A browser should open, and you should see this in it:
 
-<img src="https://github.com/Elm-Detroit/elm-workshop/blob/master/static/images/verification-success.png" width="350" alt="Verification Image" />
-
+    <img src="https://github.com/Elm-Detroit/elm-workshop/blob/master/static/images/verification-success.png" width="350" alt="Verification Image" />
    
 
 
