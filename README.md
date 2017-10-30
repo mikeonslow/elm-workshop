@@ -59,7 +59,7 @@ On your computer, complete the following steps:
 
 2. Once that succeeds, run this to verify everything:
    
-   `elm-live Main.elm --open --pushstate --output=elm.js`
+   `elm-live Main.elm --open --pushstate --output=static/js/elm.js`
     
     A browser should open, and you should see this in it:
 
