@@ -1,9 +1,5 @@
 module Main exposing (..)
 
-{-| THIS FILE IS NOT PART OF THE COURSE! It is only to verify that you
-have everything set up properly.
--}
-
 import Html exposing (Html, div, h1, header, text, img)
 import Html.Attributes exposing (class, src, width)
 
@@ -13,9 +9,14 @@ main =
     Html.program
         { view = view
         , update = update
-        , init = ( initialModel, Cmd.none )
-        , subscriptions = \_ -> Sub.none
+        , init = init
+        , subscriptions = subscriptions
         }
+
+
+
+init =
+    ( initialModel, Cmd.none )
 
 
 initialModel : Model
@@ -43,3 +44,7 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     ( model, Cmd.none )
+
+
+subscriptions =
+    \_ -> Sub.none
