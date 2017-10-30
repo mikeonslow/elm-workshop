@@ -18,7 +18,7 @@ To achieve that goal, we will cover:
 
 For this class, you will need to bring and prepare:
 
-- A laptop with internet access
+- A laptop with internet access (we'll have WiFi access at the events)
 
 - A GitHub account [https://github.com/]() 
 
