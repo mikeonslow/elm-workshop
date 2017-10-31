@@ -1,180 +1,151 @@
 
-Back to [Part 1](https://github.com/Elm-Detroit/elm-workshop/blob/master/part1/README.md)
+Back to [Part 2](https://github.com/Elm-Detroit/elm-workshop/blob/master/part2/README.md)
 
-# Introduction to Elm (Part 2)
+# Introduction to Elm (Part 3)
 
-In this part, we'll start off with the basic frame of the app and look at each section.
+In part 3, we'll start to fill out our application. A good place to start seems like modelling the problem. 
 
-#### Module and Imports
+We'll be building an app called "Elmfolio". This is a fictional portfolio app that displays project details including
+an image, title, project description and a link to the project (should it have one).
 
-The file starts off with the `module` definition:
+An additional requirement is the ability to break projects out by category and only show projects of one category type
+at a time.
 
-`module Main exposing (..)`
+There is no requirement to update items so we can use a standard JSON API with the `GET` verb. 
 
-Here we're creating a module named `Main` that exposes all of it's functions.
+An existing API has been created and is ready for us to use: [http://www.mocky.io/v2/59f748f62f000070135585d0]()
+, let's check this out now.
 
-Next, we'll look at imports, here we're importing a couple of common libraries from the Elm language, 
-documentation for these libraries can be found here: [http://package.elm-lang.org/packages/elm-lang/html/latest]().
+Okay, so we now know that the `categories` field contains a list `[...]` of objects `{...}` with an `id` and a `label`. 
 
 ```
-import Html exposing (Html, div, h1, header, img, text)
-import Html.Attributes exposing (class, src, width)
+categories: [
+    {
+        id: 1,
+        label: "Web Development"
+    },
+    {
+        id: 2,
+        label: "Graphic Design"
+    },
+    {
+        id: 3,
+        label: "Logo Design"
+    }
+]
 ```
 
-In this code, we're only pulling in (`exposing`) a few functions for our use locally, we can however still call unexposed
-functions by using their full namespace (ex: `Html.span`).
+We also know that we have a list of `items` with each item being an object like the one shown below:
 
-#### Model
+```
+{
+    id: 1,
+    title: "Web Development Project 1",
+    categoryId: 1,
+    imageUrl: "static/images/webdesign1.jpg",
+    linkUrl: "https://web-project1.com",
+    description: "Lorem ipsum dolor sit amet...
+    overlayColor: "#ef4581"
+}
+```
 
-The `initialModel` function initializes our Model. This function is called in `init` and outputs a `Model`.
+You may or may not have put together a connection between the `id` field in each of the `categories` and the `categoryId`
+ of each of the `items`. We'll use this to link these two things and categorize our projects (items).
+ 
+
+#### Modeling with Type Aliases
+
+A `type alias` is a name that refers to a previously defined Type *or* Record. 
+
+In our case, we'll likely want to model each of the types we found above with a Record.
+
+In our `Main.elm` file, let's go ahead and add a new `type alias` for both `Category` and `Item` line 20
+just below 
+```
+type alias Model = 
+    {}
+```
+
+New code:
+
+```
+type alias Category =
+    { id : Int, label : String }
+
+
+type alias Item =
+    { id : Int
+    , title : String
+    , categoryId : Int
+    , imageUrl : String
+    , linkUrl : String
+    , description : String
+    , overlayColor : String
+    }
+```
+
+>Notice each field in the `type alias` is defined by a `fieldName : FieldType`
+
+This gives us a named structure to store each of the `categories` and `items` that will be returned from the API. 
+
+Well we're on that subject, note that the API returns a JavaScript `Array` for both `categories` and `items`, this will
+translate one-to-one with Elm's `List` data structure, so we'll plan to use that type as a container for these two 
+_lists_ of _records_
+
+Next, we'll want to create a `type alias` that stores both `categories` and `items`, we need to do this so that later, 
+we can translate the API's response directly to this container type that we're creating. We'll call this structure a `Portfolio`
+
+Let's add this new `type alias` directly above our `Category` defintion.
+
+```
+type alias Portfolio =
+    { categories : List Category
+    , items : List Item
+    }
+```
+
+For our `Model`, let's make it a bit more interesting by adding a single field called `portfoio`
+
+```
+type alias Model =
+    { portfolio : Portfolio}
+```
+
+Since we changed the defintion of `Model`, we also need to update our `initialModel`
+
+Let's update `initialModel` as follows:
 
 ```
 initialModel : Model
 initialModel =
-{}
+    { portfolio = Portfolio [] [] }
 ```
 
-The type for our `Model` is pretty bare currently but that will change as we build our app. The important thing to know
-is that this is the structure that will hold __all__ of our applications state.
+>Notice we used `Portfolio [] []` here, this is a shortcut constructor which is the same as writing out:
+`{ categories = [], items = [] }`, additional note, when using this constructor, order matters, the values should
+be passed in the same order they are defined in the `type alias`.
+
+Lastly, let's get rid of our "Hello World!!!" in our `view` function and actually output the active `Model` to the
+screen.
+
+Update the `view` function as follows:
 
 ```
-type alias Model =
-{}
-```
-
-
-#### View
-
-The function `view` renders an `Html` element using our application `Model`.
-Note that the type signature is `Model -> Html Msg`. This means that this function transforms an argument
-of `Model` into an `Html` element would produce messages tagged with `Msg`.
-
-We will see this when we introduce some interaction.
-
-```
-view : Model -> Html Msg
 view model =
-    text "Hello, World!!!"
+    text (toString model)
 ```
 
+Now if we run `elm-live Main.elm --output=static/js/elm.js --pushstate --open` we should see the following instead of
+"Hello World!!!" in the upper left corner of our screen.
 
-#### Update
-The `update` function will be called by `Html.program` each time a message is received.
-This update function responds to messages (`Msg`), updating the model and returning commands (`Cmd`) as needed.
+`{ portfolio = { categories = [], items = [] } }`
 
-```
-type Msg
-    = None
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    ( model, Cmd.none )
-```
-
-##### More about commands:
-A `Cmd` lets you do stuff: generate a random number, send an HTTP request, etc. Commands don't happen immediately, 
-they are scheduled. 
-
-When you schedule a `Cmd`, it runs within the next loop of the Elm runtime. In the code below
-we don't need to run any commands to print "Hello World", but later we'll use them to schedule an HTTP request to get
-some data from an API.
-
-
-#### Subscriptions
-In Elm, using subscriptions is how your application can listen for external input. Some examples are:
-- Keyboard events
-- Mouse movements
-- Browser locations changes
-- Websocket events
-
-In this application, we don't have a need for any active subscriptions so we add in `Sub.none`
-
-```
-subscriptions =
-\_ -> Sub.none
-```
-
-
-#### Program setup and initialization
-
-The `main` function is the entry point for our app which means it's the first thing that is run
-
-```
-main : Program Never Model Msg
-main =
-    Html.program
-        { view = view
-        , update = update
-        , init = init
-        , subscriptions = subscriptions
-        }
-```
-
-The `init` function is run by `main` upon application startup and allows us to set
-our app's initial state as well as scheduling any commands we'd like to run after the app starts
-up. For now, we don't need to run any commands so we'll use `Cmd.none` here.
-
-```
-init =
-    ( initialModel, Cmd.none )
-```
-
-#### An illustration of how it works together
-
-![The Elm runtime](https://guide.elm-lang.org/architecture/effects/program.svg)
-
-#### Starting the app
-
-Let's start out by moving into the directory for this part by running `cd part2` in a terminal
-
-One of the easiest ways to run an Elm app on your computer _without_ having an HTML file to embed it into
-is to run the Elm Reactor. We can do this now by simply running the following command in our terminal `elm reactor`.
-
-Once you run the command in your terminal of choice, you should see output like the following:
-
-```
->elm reactor
-elm-reactor 0.18.0
-Listening on http://localhost:8000
-```
-
-Now you can navigate your web browser to `http://localhost:8000` and you should see a UI that shows a list of the files for 
-this project under __"File Navigation"__. Let's go ahead and click on the `Main.elm` file.
-
-Once the app compiles (this takes a few seconds in reactor), you should see "Hello, World!!!" printed in the upper-left
-corner of your browser window. The reactor is good for testing a basic idea/verifying logic when you don't need to
-style the output with CSS.
-
-There are also other tools that can accomplish similar things:
-
-- The Elm REPL can be used to test small pieces of code and can be started by typing `elm repl` into a terminal.
-- The Elm Live is a flexible dev server with features like live reload: [https://github.com/tomekwi/elm-live]()
-
-
->Elm Live is helpful when you need to run your code in an HTML file where you can include styles (CSS) and other resources.
->This is what we'll be using `elm-live` going forward with this workshop
-
-Let's stop the `elm reactor` by clicking `Ctrl+C` in the terminal in which you started it
-
-Now let's rerun the app using `elm live` by running the following commands in a terminal:
-
-`elm-live Main.elm --output=static/js/elm.js --pushstate --open`
-
-Once we run this command, we should see a browser window open with the app running and "Hello, World!!!" displayed in
-the upper left corner just like when we used the reactor. 
-
-Now, we'll show off one of the nicest features of `elm-live`, in the `Main.elm` file, change the string "Hello World!!!"
-to "Hello `your name`!!!" and save the file!
-
-One you do this, `elm-live` should automatically update the app in your browser window to say "Hello `your name`!!!"
+>`toString model` is a handy trick, especially before you've really fleshed out your `view`
 
 #### Recap
+In this part, we learned a little bit about types and type aliases and updated our Elm code based on
+the app's requirements. 
 
-In this section, we learned about the basic structure that most Elm applications will follow. We also learned about multiple
-ways to run an Elm application.
+Next we'll learn a bit about "union types" and make some additional to both our `Msg` type and our `update` function 
 
-Next, we'll start to extend the features of our Elm application by adding to the `Model` as well as the `update` and `view`
-functions.
-
-Go to [Part 3](https://github.com/Elm-Detroit/elm-workshop/blob/master/part3/README.md)
+Go to [Part 4](https://github.com/Elm-Detroit/elm-workshop/blob/master/part4/README.md)
