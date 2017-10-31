@@ -1,5 +1,5 @@
 
-Back to [Part 1](https://github.com/Elm-Detroit/elm-workshop/blob/master/parts/part1.md)
+Back to [Part 1](https://github.com/Elm-Detroit/elm-workshop/blob/master/part3/README.md)
 
 # Introduction to Elm (Part 2)
 
@@ -160,4 +160,4 @@ ways to run an Elm application.
 Next, we'll start to extend the features of our Elm application by adding to the `Model` as well as the `update` and `view`
 functions.
 
-Go to [Part 3](https://github.com/Elm-Detroit/elm-workshop/blob/master/parts/part3.md)
+Go to [Part 3](https://github.com/Elm-Detroit/elm-workshop/blob/master/part3/README.md)
