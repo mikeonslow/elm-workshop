@@ -126,6 +126,8 @@ init =
 
 #### Starting the app
 
+Let's start out by moving into the directory for this part by running `cd part2` in a terminal
+
 One of the easiest ways to run an Elm app on your computer _without_ having an HTML file to embed it into
 is to run the Elm Reactor. We can do this now by simply running the following command in our terminal `elm reactor`.
 
@@ -149,8 +151,23 @@ There are also other tools that can accomplish similar things:
 - The Elm REPL can be used to test small pieces of code and can be started by typing `elm repl` into a terminal.
 - The Elm Live is a flexible dev server with features like live reload: [https://github.com/tomekwi/elm-live]()
 
+
 >Elm Live is helpful when you need to run your code in an HTML file where you can include styles (CSS) and other resources.
 >This is what we'll be using `elm-live` going forward with this workshop
+
+Let's stop the `elm reactor` by clicking `Ctrl+C` in the terminal in which you started it
+
+Now let's rerun the app using `elm live` by running the following commands in a terminal:
+
+`elm-live Main.elm --output=static/js/elm.js --pushstate --open`
+
+Once we run this command, we should see a browser window open with the app running and "Hello, World!!!" displayed in
+the upper left corner just like when we used the reactor. 
+
+Now, we'll show off one of the nicest features of `elm-live`, in the `Main.elm` file, change the string "Hello World!!!"
+to "Hello `your name`!!!" and save the file!
+
+One you do this, `elm-live` should automatically update the app in your browser window to say "Hello `your name`!!!"
 
 #### Recap
 
