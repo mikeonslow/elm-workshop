@@ -1,5 +1,5 @@
 
-Back to [Part 1](https://github.com/Elm-Detroit/elm-workshop/blob/master/part3/README.md)
+Back to [Part 1](https://github.com/Elm-Detroit/elm-workshop/blob/master/part1/README.md)
 
 # Introduction to Elm (Part 2)
 
