@@ -1,151 +1,131 @@
 
-Back to [Part 2](https://github.com/Elm-Detroit/elm-workshop/blob/master/part2/README.md)
+Back to [Part 3](https://github.com/Elm-Detroit/elm-workshop/blob/master/part3/README.md)
 
-# Introduction to Elm (Part 3)
+# Introduction to Elm (Part 4)
 
-In part 3, we'll start to fill out our application. A good place to start seems like modelling the problem. 
+In part 4, we'll introduce Elm's "union type" and add to our `Msg` union type as well as installing some new packages
+and updating our imports section.
 
-We'll be building an app called "Elmfolio". This is a fictional portfolio app that displays project details including
-an image, title, project description and a link to the project (should it have one).
+From the Elm guide:
+>Many languages have trouble expressing data with weird shapes. They give you a small set of built-in types, and you have to represent everything with them. So you often find yourself using `null`, booleans or strings to encode details in a way that is quite error prone.
+>
+>Elm's union types let you represent complex data much more naturally.
 
-An additional requirement is the ability to break projects out by category and only show projects of one category type
-at a time.
-
-There is no requirement to update items so we can use a standard JSON API with the `GET` verb. 
-
-An existing API has been created and is ready for us to use: [http://www.mocky.io/v2/59f748f62f000070135585d0]()
-, let's check this out now.
-
-Okay, so we now know that the `categories` field contains a list `[...]` of objects `{...}` with an `id` and a `label`. 
+In this application we'll mostly use union types to model the messages that are passed to
+our `update` function but this is just one of may uses for union types. Some examples of union types in
+action are Elm's `Maybe` type:
 
 ```
-categories: [
-    {
-        id: 1,
-        label: "Web Development"
-    },
-    {
-        id: 2,
-        label: "Graphic Design"
-    },
-    {
-        id: 3,
-        label: "Logo Design"
-    }
-]
+type Maybe a
+    = Just a
+    | Nothing
 ```
 
-We also know that we have a list of `items` with each item being an object like the one shown below:
+`Maybe` is generally used to handle situations in which `null` would be used in other languages, this allows
+us to handle both cases so that our application never acts in an odd way when running into situations in
+which no value exists (like the example in [part 1](https://github.com/Elm-Detroit/elm-workshop/blob/master/part1/README.md#array) in which `Array.get` could have no value for a non-existant
+index)
+
+Elm's built in type `Bool` (used to store boolean `true | false` values) is also a union type
 
 ```
-{
-    id: 1,
-    title: "Web Development Project 1",
-    categoryId: 1,
-    imageUrl: "static/images/webdesign1.jpg",
-    linkUrl: "https://web-project1.com",
-    description: "Lorem ipsum dolor sit amet...
-    overlayColor: "#ef4581"
+type Bool = True | False
+```
+
+Let's move on to using union types ourselves. Currently our `Msg` type is a union type with one possible
+state `None`
+
+```
+type Msg
+    = None
+```
+
+We're at a point in building the app in which we can start modeling other states we'll need to accomplish
+our requirements for the app. First and foremost, we need to fetch data from the API, so let's add some of the code
+ for that now.
+ 
+Let's update the `type Msg` to have another message called `ApiResponse`, this message will also need some data associated
+with the API response so that we know if the request succeeded or failed. Update the `Msg` defintion as follows:
+
+```
+type Msg
+    = ApiResponse (Result Http.Error Portfolio)
+    | None
+```
+
+To break this down a bit, we'll be using a new (to our app) library called `Http` to send the HTTP request as well as
+route the response (regardless of whether or not it succeeds) to our new message `ApiResponse`. Since `Http.send` 
+returns a `Result` with this data, we need to handle type. Parenthesis are needed here because `Result` is actually
+a union type itself:
+
+```
+type Result error value
+    = Ok value
+    | Err error
+```
+
+So, we either get `Ok` and a `value` (in this case, it's be the JSON response from the API) _or_ we get `Err error` in 
+which `error` string like `NetworkError` if say, the API is down or we entered an incorrect URL. 
+
+Again, we're forced to handle all states here because software does fail!
+
+Next, we'll want to add a new library to our project. We'll need to do this in a terminal by running the following
+command (be sure that you're in the `part4` directory when you run this)
+
+`elm package install elm-lang/http --yes`
+
+Well we're at it, let's set ourselves up for the next step by also running:
+
+`elm package install NoRedInk/elm-decode-pipeline --yes`
+
+>These are the only two additional libraries that we'll need for the remainder of the project.
+
+Once you've run these commands, open your `part4/elm-package.json` file and in the `dependencies` section, it
+should look something like the following: 
+
+```
+"dependencies": {
+    "NoRedInk/elm-decode-pipeline": "3.0.0 <= v < 4.0.0",
+    "elm-lang/core": "5.1.1 <= v < 6.0.0",
+    "elm-lang/html": "2.0.0 <= v < 3.0.0",
+    "elm-lang/http": "1.0.0 <= v < 2.0.0"
 }
 ```
 
-You may or may not have put together a connection between the `id` field in each of the `categories` and the `categoryId`
- of each of the `items`. We'll use this to link these two things and categorize our projects (items).
- 
+This isn't something we'll cover in depth because it's most likely not necessary but the `elm-package.json`
+file holds the configuration for your Elm project. As you begin to run your application, you'll also see `elm-stuff` but
+these aren't files you'll actively modify (as a matter of fact, modifying them directly would likely cause you issues!)
 
-#### Modeling with Type Aliases
+Next let's add our newly installed packages to our imports section (near the top of our `Main.elm` file) and replace the
+existing imports: 
 
-A `type alias` is a name that refers to a previously defined Type *or* Record. 
-
-In our case, we'll likely want to model each of the types we found above with a Record.
-
-In our `Main.elm` file, let's go ahead and add a new `type alias` for both `Category` and `Item` line 20
-just below 
-```
-type alias Model = 
-    {}
-```
-
-New code:
+Replace
 
 ```
-type alias Category =
-    { id : Int, label : String }
-
-
-type alias Item =
-    { id : Int
-    , title : String
-    , categoryId : Int
-    , imageUrl : String
-    , linkUrl : String
-    , description : String
-    , overlayColor : String
-    }
+import Html exposing (Html, div, h1, header, img, text)
+import Html.Attributes exposing (class, src, width)
 ```
 
->Notice each field in the `type alias` is defined by a `fieldName : FieldType`
-
-This gives us a named structure to store each of the `categories` and `items` that will be returned from the API. 
-
-Well we're on that subject, note that the API returns a JavaScript `Array` for both `categories` and `items`, this will
-translate one-to-one with Elm's `List` data structure, so we'll plan to use that type as a container for these two 
-_lists_ of _records_
-
-Next, we'll want to create a `type alias` that stores both `categories` and `items`, we need to do this so that later, 
-we can translate the API's response directly to this container type that we're creating. We'll call this structure a `Portfolio`
-
-Let's add this new `type alias` directly above our `Category` defintion.
+with
 
 ```
-type alias Portfolio =
-    { categories : List Category
-    , items : List Item
-    }
+import Html exposing (..)
+import Html.Attributes exposing (attribute, class, classList, href, src, target, type_, width)
+import Html.Events exposing (onClick)
+import Http
+import Json.Decode as Decode exposing (Decoder, Value)
+import Json.Decode.Pipeline as Pipeline exposing (decode, optional, required)
 ```
-
-For our `Model`, let's make it a bit more interesting by adding a single field called `portfoio`
-
-```
-type alias Model =
-    { portfolio : Portfolio}
-```
-
-Since we changed the defintion of `Model`, we also need to update our `initialModel`
-
-Let's update `initialModel` as follows:
-
-```
-initialModel : Model
-initialModel =
-    { portfolio = Portfolio [] [] }
-```
-
->Notice we used `Portfolio [] []` here, this is a shortcut constructor which is the same as writing out:
-`{ categories = [], items = [] }`, additional note, when using this constructor, order matters, the values should
-be passed in the same order they are defined in the `type alias`.
-
-Lastly, let's get rid of our "Hello World!!!" in our `view` function and actually output the active `Model` to the
-screen.
-
-Update the `view` function as follows:
-
-```
-view model =
-    text (toString model)
-```
-
-Now if we run `elm-live Main.elm --output=static/js/elm.js --pushstate --open` we should see the following instead of
-"Hello World!!!" in the upper left corner of our screen.
-
-`{ portfolio = { categories = [], items = [] } }`
-
->`toString model` is a handy trick, especially before you've really fleshed out your `view`
 
 #### Recap
-In this part, we learned a little bit about types and type aliases and updated our Elm code based on
-the app's requirements. 
+In this part, we learned about union types and some ways they are used to solve problems. We also learned how to install
+new Elm packages. 
 
-Next we'll learn a bit about "union types" and make some additional to both our `Msg` type and our `update` function 
+In the next part, we'll use the `Http` library to send a request to the API and create the code necessary to receive that
+message by modifying the `update` function to use a `case` expression to route our updates based on the `Msg` that was
+sent.
 
-Go to [Part 4](https://github.com/Elm-Detroit/elm-workshop/blob/master/part4/README.md)
+>Messages can be sent by user input (onClick etc.), as the result of a command (`Cmd`) or as the result of a subscription 
+(`Sub`)  
+
+Go to [Part 5](https://github.com/Elm-Detroit/elm-workshop/blob/master/part5/README.md)
