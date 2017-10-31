@@ -30,9 +30,119 @@
 #### Learning
 - Examples from the official site: http://elm-lang.org/examples 
 - The Official Guide: https://guide.elm-lang.org/ 
-- Ellie App (In browser editor): https://ellie-app.com/ 
-- Elm in Action (Book): https://www.manning.com/books/elm-in-action 
-- Elm Town (Podcast): https://elmtown.github.io/ 
+- Elm in Action (Book): https://www.manning.com/books/elm-in-action
+
+#### In browser online editors
+- Try Elm (for simple coding): http://elm-lang.org/try
+- Ellie App: https://ellie-app.com/ (Allows for installing packages, JavaScript interop, sharing your code and more)
+ 
+#### Podcasts
+- Elm Town: https://elmtown.github.io/ 
+- JS to Elm: https://itunes.apple.com/us/podcast/javascript-to-elm/id1272026213?mt=2
+
+#### Misc
 - Awesome Elm (collection of resources and libraries): https://github.com/isRuslan/awesome-elm
 
-Go to [Part 2](https://github.com/mikeonslow/elm-workshop/blob/master/parts/part2.md)
+
+## Language Syntax
+
+Here we'll look at Elm's syntax vs JavaScript together by looking at the link below
+
+[http://elm-lang.org/docs/from-javascript]()
+
+Next we'll look at some of Elm's code data structures:
+
+
+#### Iterable structures
+- [List](http://package.elm-lang.org/packages/elm-lang/core/latest/List)
+- [Array](http://package.elm-lang.org/packages/elm-lang/core/latest/Array)
+- [Set](http://package.elm-lang.org/packages/elm-lang/core/latest/Set)
+- [Dict](http://package.elm-lang.org/packages/elm-lang/core/latest/Dict)
+
+##### List
+A `List` is used to store an iterable list of values where every value in a list must have the same type. Lists are
+the most commonly used iterable data structure in Elm but they do have some limitations. One of the main limitations is
+that Lists are not indexed (unlike `Array` in Elm or `Array` in JavaScript) so you cannot get/update an element 
+by index (`myArray[n]` in JavaScript). However, `List` implements many common functions like `filter`, `map` etc. 
+
+##### Array
+Elm's `Array` structure is similar to a `List` but it also supports positional access via it's helper functions like
+`Array.get`, `Array.set` and more. An example of using `Array.get` is shown below:
+
+```
+a = Array.fromList [9,5,7,6]
+b = Array.get 3 a
+b == Just 6
+```
+
+One interesting note here is that `b ==Just 6` instead of `6`, the reason for this is that `Array.get` returns a `Maybe`
+type. `Maybe` is used in places where the result of a functional call may not succeed. In this case if we tried to call
+`Array.get 13 a`, we'd get back `Nothing` because index `13` does not exist. 
+
+We'll talk more about `Maybe` later but for now, just know that it is Elm's way of defining something that is _either_ 
+`Nothing` or `Just something` where `something` is the value.
+
+##### Set
+Similar to a `List` but has some unique properties. A `Set` is a set of unique values. The values can be any `comparable`
+type. This includes `Int`, `Float`, `Time`, `Char`, `String`, and tuples or lists of comparable types. Sets are good for times
+when you need unique values. A note about `Set` is that when accessing items, they are referenced by value and not index.
+For instance, the documentation for `Set.remove` states: "Remove a value from a set. If the value is not found, no changes are made."
+
+We brought up a new term here `comparable`, this is a special type classification that includes types of `Int`, `Float`, 
+`Time`, `Char`, `String`, `Tuple` and `List`. This is not something that needs a deep dive but we wanted to bring it up.
+
+
+##### Dict
+A dictionary mapping unique keys to values. The keys can be any `comparable` type such as `Int`, `Float`, `Time`, `Char`,
+`String`, and tuples or lists of `comparable` types. `Dict` is good for times when you need to store data that will need
+to be updated (or accessed by a unique key) frequently. In JavaScript a `Dict` would probably be used for times where you
+would use JSON similar to the following:
+ 
+```
+{
+  "123": {"username": "john_mccauley", "firstname": "John", "lastname": "McCauley"},
+  "124": {"username": "james_smith", "firstname": "James", "lastname": "Smith"},
+  ...
+}
+```
+
+Where the key `123` or `124` would be the user's unique ID. 
+
+>Note: Each of these structures implement common transformation functions like `map`, `filter` and folds (amongst others). 
+>These functions are useful for many data structures (both iterable and non-iterable) for transforming/shaping data._
+
+##### Tuple
+
+A tuple is an ordered collection of values. Tuples can consist of two or more elements and each element does not
+have to be the same type. In Elm tuples are created using the literal syntax of two surrounding parenthesis. Tuples
+can be used for something like an `x` and `y` on a grid or something more complex. 
+
+```
+# Tuple example
+position = (50, 123)
+```
+
+>Note: For more complex data, it's likely you'll want to use a `Record` instead (see details below). 
+
+##### Records
+
+A record is a lightweight labelled data structure (similar to an `object` in JavaScript).
+For instance, if we wanted to represent a point we just create a record with an `x` and `y` field:
+
+`{ x = 3, y = 4 }`
+
+Despite the similarities to `object` in JavaScript, records have a few major differences:
+
+- You cannot ask for a field that does not exist.
+- No field will ever be `undefined` or `null`.
+- You cannot create recursive records with a `this` or `self` keyword.
+
+#### Recap
+
+In this section, we learned what the Elm programming language is as well as some basic syntax as well
+as some of the differences and similarities between Elm and JavaScript.
+
+Next, we'll take a look at what an Elm program looks like in practice and take a look at how
+the Elm Architecture is used to structure Elm applications.
+
+Go to [Part 2](https://github.com/Elm-Detroit/elm-workshop/blob/master/parts/part2.md)
