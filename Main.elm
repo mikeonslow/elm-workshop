@@ -34,7 +34,7 @@ view model =
 
 
 
-{--Update
+{--Update--
 The `update` function will be called by Html.program each time a message is received.
 This update function responds to messages (Msg), updating the model and returning commands as needed.
 --}
