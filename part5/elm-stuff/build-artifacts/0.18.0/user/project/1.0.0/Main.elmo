@@ -34,3 +34,6 @@ var _user$project$Main$Item = F7(
 		return {id: a, title: b, categoryId: c, imageUrl: d, linkUrl: e, description: f, overlayColor: g};
 	});
 var _user$project$Main$None = {ctor: 'None'};
+var _user$project$Main$ApiResponse = function (a) {
+	return {ctor: 'ApiResponse', _0: a};
+};
