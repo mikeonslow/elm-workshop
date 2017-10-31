@@ -1,5 +1,5 @@
 
-Back to [Part 3](https://github.com/Elm-Detroit/elm-workshop/blob/master/part3/README.md)
+Back to [Part 3](../part3/README.md)
 
 # Introduction to Elm (Part 4)
 
@@ -128,4 +128,4 @@ sent.
 >Messages can be sent by user input (onClick etc.), as the result of a command (`Cmd`) or as the result of a subscription 
 (`Sub`)  
 
-Go to [Part 5](https://github.com/Elm-Detroit/elm-workshop/blob/master/part5/README.md)
+Go to [Part 5](../part5/README.md)

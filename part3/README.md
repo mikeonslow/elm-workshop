@@ -1,5 +1,5 @@
 
-Back to [Part 2](https://github.com/Elm-Detroit/elm-workshop/blob/master/part2/README.md)
+Back to [Part 2](../part2/README.md)
 
 # Introduction to Elm (Part 3)
 
@@ -148,4 +148,4 @@ the app's requirements.
 
 Next we'll learn a bit about "union types" and make some additional to both our `Msg` type and our `update` function 
 
-Go to [Part 4](https://github.com/Elm-Detroit/elm-workshop/blob/master/part4/README.md)
+Go to [Part 4](../part4/README.md)
