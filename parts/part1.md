@@ -145,4 +145,4 @@ as some of the differences and similarities between Elm and JavaScript.
 Next, we'll take a look at what an Elm program looks like in practice and take a look at how
 the Elm Architecture is used to structure Elm applications.
 
-Go to [Part 2](https://github.com/mikeonslow/elm-workshop/blob/master/parts/part2.md)
+Go to [Part 2](https://github.com/Elm-Detroit/elm-workshop/blob/master/parts/part2.md)
