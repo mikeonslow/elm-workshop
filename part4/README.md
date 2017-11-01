@@ -83,7 +83,7 @@ Well we're at it, let's set ourselves up for the next step by also running:
 Once you've run these commands, open your `part4/elm-package.json` file and in the `dependencies` section, it
 should look something like the following: 
 
-```
+```json
 "dependencies": {
     "NoRedInk/elm-decode-pipeline": "3.0.0 <= v < 4.0.0",
     "elm-lang/core": "5.1.1 <= v < 6.0.0",
