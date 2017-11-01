@@ -3,6 +3,8 @@ Back to [Part 1](../part1/README.md)
 
 # Introduction to Elm (Part 2)
 
+>Before getting started with this part, be sure to `cd` into the directory `part2` in your project
+
 In this part, we'll start off with the basic frame of the app and look at each section.
 
 #### Module and Imports

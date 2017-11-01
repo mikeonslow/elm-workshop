@@ -3,6 +3,8 @@ Back to [Part 2](../part2/README.md)
 
 # Introduction to Elm (Part 3)
 
+>Before getting started with this part, be sure to `cd` into the directory `part3` in your project
+
 In part 3, we'll start to fill out our application. A good place to start seems like modelling the problem. 
 
 We'll be building an app called "Elmfolio". This is a fictional portfolio app that displays project details including

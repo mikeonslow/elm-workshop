@@ -3,6 +3,8 @@ Back to [Part 7](../part7/README.md)
 
 # Introduction to Elm (Part 8)
 
+>Before getting started with this part, be sure to `cd` into the directory `part8` in your project
+
 Currently, we have no real way to _interact_ with the app, in this section, we'll wire up some new 
 messages that will be trigged by the `onClick` event for our category buttons as well as our `Item` images.
 This is the last step in finishing off our first Elm web app!

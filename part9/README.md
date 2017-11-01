@@ -3,6 +3,8 @@ Back to [Part 8](../part8/README.md)
 
 # Introduction to Elm (Part 9)
 
+>Before getting started with this part, be sure to `cd` into the directory `part9` in your project
+
 ### Ways to improve our App
 
 We've built a working Elm app, excellent! Due to the time limitation on this workshop, we had to skip a

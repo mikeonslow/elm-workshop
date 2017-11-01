@@ -3,6 +3,8 @@ Back to [Part 6](../part6/README.md)
 
 # Introduction to Elm (Part 7)
 
+>Before getting started with this part, be sure to `cd` into the directory `part7` in your project
+
 In this section, we'll be updating our `view` function to display the data returned by the API in a meaningful
 way. 
 
