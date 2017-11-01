@@ -21,16 +21,16 @@ Okay, so we now know that the `categories` field contains a list `[...]` of obje
 ```json
 categories: [
     {
-        id: 1,
-        label: "Web Development"
+        "id": 1,
+        "label": "Web Development"
     },
     {
-        id: 2,
-        label: "Graphic Design"
+        "id": 2,
+        "label": "Graphic Design"
     },
     {
-        id: 3,
-        label: "Logo Design"
+        "id": 3,
+        "label": "Logo Design"
     }
 ]
 ```
@@ -39,13 +39,13 @@ We also know that we have a list of `items` with each item being an object like 
 
 ```json
 {
-    id: 1,
-    title: "Web Development Project 1",
-    categoryId: 1,
-    imageUrl: "static/images/webdesign1.jpg",
-    linkUrl: "https://web-project1.com",
-    description: "Lorem ipsum dolor sit amet...
-    overlayColor: "#ef4581"
+    "id": 1,
+    "title": "Web Development Project 1",
+    "categoryId": 1,
+    "imageUrl": "static/images/webdesign1.jpg",
+    "linkUrl": "https://web-project1.com",
+    "description": "Lorem ipsum dolor sit amet...",
+    "overlayColor": "#ef4581"
 }
 ```
 
