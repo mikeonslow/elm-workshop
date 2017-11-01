@@ -96,13 +96,13 @@ initialModel url =
 
 Here's what we've done here:
 
-- Changed the function signature and defintion for `initialModel` to except a `String` (`url`) as it's single argument:
+- Changed the function signature and definition for `initialModel` to except a `String` (`url`) as it's single argument:
 
   ```
   initialModel : String -> Model
   initialModel url =
   ```
-- Updated the `portfolio` field to use the longform record defintion instead of the type constructor shortcut we implemented
+- Updated the `portfolio` field to use the longform record definition instead of the type constructor shortcut we implemented
 in part 3
 - We're setting `apiUrl` based on the `url` passed into `initialModel`
 

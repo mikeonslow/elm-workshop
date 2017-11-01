@@ -23,7 +23,7 @@ type Maybe a
 
 `Maybe` is generally used to handle situations in which `null` would be used in other languages, this allows
 us to handle both cases so that our application never acts in an odd way when running into situations in
-which no value exists (like the example in [part 1](https://github.com/Elm-Detroit/elm-workshop/blob/master/part1/README.md#array) in which `Array.get` could have no value for a non-existant
+which no value exists (like the example in [part 1](https://github.com/Elm-Detroit/elm-workshop/blob/master/part1/README.md#array) in which `Array.get` could have no value for a non-existent
 index)
 
 Elm's built in type `Bool` (used to store boolean `true | false` values) is also a union type
@@ -40,12 +40,12 @@ type Msg
     = None
 ```
 
-We're at a point in building the app in which we can start modeling other states we'll need to accomplish
+We're at a point in building the app in which we can start modelling other states we'll need to accomplish
 our requirements for the app. First and foremost, we need to fetch data from the API, so let's add some of the code
  for that now.
  
 Let's update the `type Msg` to have another message called `ApiResponse`, this message will also need some data associated
-with the API response so that we know if the request succeeded or failed. Update the `Msg` defintion as follows:
+with the API response so that we know if the request succeeded or failed. Update the `Msg` definition as follows:
 
 ```
 type Msg

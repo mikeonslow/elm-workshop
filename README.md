@@ -28,7 +28,7 @@ For this class, you will need to bring and prepare:
 
 ### Setup 
 
-Before the workshop, you'll want to make sure that your enviroment and project are setup. Follow the steps below to accomplish this. 
+Before the workshop, you'll want to make sure that your environment and project are setup. Follow the steps below to accomplish this. 
 
 #### Environment
  

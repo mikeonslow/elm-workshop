@@ -8,7 +8,7 @@ way.
 
 >A note before we start. Instead of using HTML tags like `<a>`, `<div>`, `<i>` etc. we use functions in Elm to produce these
 same outputs on the screen. Almost all of these functions have the same type signature to make them easily
-composible. For instance, here's the type definition of the `h1` function which, in turn produces an `<h1>` HTML tag:
+composable. For instance, here's the type definition of the `h1` function which, in turn produces an `<h1>` HTML tag:
 
 `h1 : List (Attribute msg) -> List (Html msg) -> Html msg`
 
@@ -16,12 +16,12 @@ Calling this in practice would look like:
 
 `h1 [ ... attributes here... ] [ ..child tags here...]`
  
-As with tags, HTML attributes are also simply functions like `class`, `style` etc. Some of the implentations of these vary
+As with tags, HTML attributes are also simply functions like `class`, `style` etc. Some of the implementations of these vary
 depending on what the value of the attribute will look like but as with most Elm things, it will generally 
 be standardized as much as possible to avoid confusion `h1 [ attributeOne argument, attributeTwo argument, ...]`
 
 So with that, let's start updating our `view` function. Let's remove the code we currently have
-in the funtion `text (toString model)` and replace it with the following view code, then save the file:
+in the function `text (toString model)` and replace it with the following view code, then save the file:
 
 ```
 view : Model -> Html Msg
@@ -56,16 +56,16 @@ view model =
 ```
 
 >Notice we've added some of the `view` helpers code to the file as these don't add much in the way of teaching concepts, however, 
-it's likely valuable to analyze these once the workshop is completed and you have a working Elm app. If you have any questions
-about how these funtions work, or what they are doing, feel free to ask your instructors during the wrap up time. 
+it's likely valuable to analyse these once the workshop is completed and you have a working Elm app. If you have any questions
+about how these functions work, or what they are doing, feel free to ask your instructors during the wrap up time. 
 
-Another note here is that we're introducitng the `let...in` expression which allows you to build up intermediary results in
+Another note here is that we're introducing the `let...in` expression which allows you to build up intermediary results in
 the `let` portion of the block and use them in the `in` portion. These variables remain local to the `let...in...` scope
 so they cannot be accessed elsewhere.
 
 Next, we need to add a couple of extra fields to our `Model` to hold our app's state.
 
-Let's update the defintion of `Model` from
+Let's update the definition of `Model` from
 
 ```
 type alias Model =
@@ -96,8 +96,8 @@ shortly).
 - `selectedItemId : Maybe Int` which is similar to `selectedCategoryId` in that it tracks which `Item` the user has
  selected and uses a `Maybe Int` (for the same reason given above).
 
-As we've done before when we updated the `Model` defintion, we need to also update our `initialModel` function. 
-Let's replace our `initialModel` defintion with the following:
+As we've done before when we updated the `Model` definition, we need to also update our `initialModel` function. 
+Let's replace our `initialModel` definition with the following:
  
 ```
 initialModel : String -> Model

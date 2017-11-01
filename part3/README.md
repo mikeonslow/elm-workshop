@@ -53,7 +53,7 @@ You may or may not have put together a connection between the `id` field in each
  of each of the `items`. We'll use this to link these two things and categorize our projects (items).
  
 
-#### Modeling with Type Aliases
+#### Modelling with Type Aliases
 
 A `type alias` is a name that refers to a previously defined Type *or* Record. 
 
@@ -95,7 +95,7 @@ _lists_ of _records_
 Next, we'll want to create a `type alias` that stores both `categories` and `items`, we need to do this so that later, 
 we can translate the API's response directly to this container type that we're creating. We'll call this structure a `Portfolio`
 
-Let's add this new `type alias` directly above our `Category` defintion.
+Let's add this new `type alias` directly above our `Category` definition.
 
 ```
 type alias Portfolio =
@@ -111,7 +111,7 @@ type alias Model =
     { portfolio : Portfolio}
 ```
 
-Since we changed the defintion of `Model`, we also need to update our `initialModel`
+Since we changed the definition of `Model`, we also need to update our `initialModel`
 
 Let's update `initialModel` as follows:
 

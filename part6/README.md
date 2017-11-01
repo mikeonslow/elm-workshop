@@ -63,7 +63,7 @@ itemDecoder =
         |> required "overlayColor" Decode.string
 ```
 
-For instance, our `portfolioDecoder` takes the full JSON string returned fromm the API and starts with defining how the
+For instance, our `portfolioDecoder` takes the full JSON string returned from the API and starts with defining how the
 top level fields `categories` and `items` should be decoded, then we _snap_ in our `categoryDecoder` and `itemDecoder`
 along with `Decode.list` to define how we'll want those decoded.
 
@@ -80,7 +80,7 @@ You can read more about JSON decoders in package documentation:
 [http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Decode](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Decode)
 
 >In this app, we're using a library called `elm-decode-pipeline` created by the good folks at No Red Ink. This library
->allows us to simplify decoding more complex data structures and we've choosen to use it
+>allows us to simplify decoding more complex data structures and we've chosen to use it
 
 As a reminder, we can alias a module upon import by using the `as` keyword and we're currently giving the `Json.Decode.Pipeline`
 library a namespace of `Pipeline`
@@ -104,7 +104,7 @@ Examples `...Decode.int 1`, `...Decode.string ""` or `...Decode.list []`.
 Something like `...Decode.string 0` would cause
 a type mismatch and a compiler error.
 
->IMPORTANT: Deocders must be defined with the fields in the same order that theyare defined in the `type alias`. If not, 
+>IMPORTANT: Decoders must be defined with the fields in the same order that they are defined in the `type alias`. If not, 
 you may not get a compiler error but may just get unexpected results
 
 #### Encoders
