@@ -1,0 +1,125 @@
+
+{
+  "categories": [{
+    "id": 1,
+    "label": "Web Development"
+  },
+    {
+      "id": 2,
+      "label": "Graphic Design"
+    },
+    {
+      "id": 3,
+      "label": "Logo Design"
+    }
+  ],
+  "items": [{
+    "id": 1,
+    "title": "Web Development Project 1",
+    "categoryId": 1,
+    "imageUrl": "static/images/webdesign1.jpg",
+    "linkUrl": "https://web-project1.com",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ligula est, maximus sed eros ac, venenatis aliquet orci. Morbi diam lectus, aliquet vitae ultricies nec, porttitor a sem. Sed et nulla non est tristique gravida et in est. Duis malesuada sem quam, vel mattis ligula interdum et. Nunc sagittis consectetur mauris non vehicula. Praesent facilisis tempus neque. Proin interdum iaculis ligula, ac pellentesque nibh. Nam ullamcorper scelerisque sapien, sit amet interdum felis gravida vitae. Phasellus volutpat vestibulum velit id faucibus. Nam auctor congue porttitor. Sed eleifend neque tellus, id molestie purus molestie ut. Donec dictum, magna eu fermentum placerat, neque erat egestas urna, in malesuada leo orci nec nisi. Etiam at tellus laoreet nulla ullamcorper ornare. Aliquam sagittis tellus fermentum tempus faucibus.",
+    "overlayColor": "#ef4581"
+  },
+    {
+      "id": 2,
+      "title": "Web Development Project 2",
+      "categoryId": 1,
+      "imageUrl": "static/images/webdesign2.jpg",
+      "linkUrl": "https://web-project2.com",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ligula est, maximus sed eros ac, venenatis aliquet orci. Morbi diam lectus, aliquet vitae ultricies nec, porttitor a sem. Sed et nulla non est tristique gravida et in est. Duis malesuada sem quam, vel mattis ligula interdum et. Nunc sagittis consectetur mauris non vehicula. Praesent facilisis tempus neque. Proin interdum iaculis ligula, ac pellentesque nibh. Nam ullamcorper scelerisque sapien, sit amet interdum felis gravida vitae. Phasellus volutpat vestibulum velit id faucibus. Nam auctor congue porttitor. Sed eleifend neque tellus, id molestie purus molestie ut. Donec dictum, magna eu fermentum placerat, neque erat egestas urna, in malesuada leo orci nec nisi. Etiam at tellus laoreet nulla ullamcorper ornare. Aliquam sagittis tellus fermentum tempus faucibus.",
+      "overlayColor": "#ef4581"
+    },
+    {
+      "id": 3,
+      "title": "Web Development Project 3",
+      "categoryId": 1,
+      "imageUrl": "static/images/webdesign3.jpg",
+      "linkUrl": "https://web-project3.com",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ligula est, maximus sed eros ac, venenatis aliquet orci. Morbi diam lectus, aliquet vitae ultricies nec, porttitor a sem. Sed et nulla non est tristique gravida et in est. Duis malesuada sem quam, vel mattis ligula interdum et. Nunc sagittis consectetur mauris non vehicula. Praesent facilisis tempus neque. Proin interdum iaculis ligula, ac pellentesque nibh. Nam ullamcorper scelerisque sapien, sit amet interdum felis gravida vitae. Phasellus volutpat vestibulum velit id faucibus. Nam auctor congue porttitor. Sed eleifend neque tellus, id molestie purus molestie ut. Donec dictum, magna eu fermentum placerat, neque erat egestas urna, in malesuada leo orci nec nisi. Etiam at tellus laoreet nulla ullamcorper ornare. Aliquam sagittis tellus fermentum tempus faucibus.",
+      "overlayColor": "#ef4581"
+    },
+    {
+      "id": 4,
+      "title": "Web Development Project 4",
+      "categoryId": 1,
+      "imageUrl": "static/images/webdesign4.jpg",
+      "linkUrl": "https://web-project4.com",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ligula est, maximus sed eros ac, venenatis aliquet orci. Morbi diam lectus, aliquet vitae ultricies nec, porttitor a sem. Sed et nulla non est tristique gravida et in est. Duis malesuada sem quam, vel mattis ligula interdum et. Nunc sagittis consectetur mauris non vehicula. Praesent facilisis tempus neque. Proin interdum iaculis ligula, ac pellentesque nibh. Nam ullamcorper scelerisque sapien, sit amet interdum felis gravida vitae. Phasellus volutpat vestibulum velit id faucibus. Nam auctor congue porttitor. Sed eleifend neque tellus, id molestie purus molestie ut. Donec dictum, magna eu fermentum placerat, neque erat egestas urna, in malesuada leo orci nec nisi. Etiam at tellus laoreet nulla ullamcorper ornare. Aliquam sagittis tellus fermentum tempus faucibus.",
+      "overlayColor": "#ef4581"
+    },
+    {
+      "id": 5,
+      "title": "Web Development Project 5",
+      "categoryId": 1,
+      "imageUrl": "static/images/webdesign5.jpg",
+      "linkUrl": "https://web-project5.com",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ligula est, maximus sed eros ac, venenatis aliquet orci. Morbi diam lectus, aliquet vitae ultricies nec, porttitor a sem. Sed et nulla non est tristique gravida et in est. Duis malesuada sem quam, vel mattis ligula interdum et. Nunc sagittis consectetur mauris non vehicula. Praesent facilisis tempus neque. Proin interdum iaculis ligula, ac pellentesque nibh. Nam ullamcorper scelerisque sapien, sit amet interdum felis gravida vitae. Phasellus volutpat vestibulum velit id faucibus. Nam auctor congue porttitor. Sed eleifend neque tellus, id molestie purus molestie ut. Donec dictum, magna eu fermentum placerat, neque erat egestas urna, in malesuada leo orci nec nisi. Etiam at tellus laoreet nulla ullamcorper ornare. Aliquam sagittis tellus fermentum tempus faucibus.",
+      "overlayColor": "#ef4581"
+    },
+    {
+      "id": 6,
+      "title": "Web Development Project 6",
+      "categoryId": 1,
+      "imageUrl": "static/images/webdesign6.jpg",
+      "linkUrl": "https://web-project6.com",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ligula est, maximus sed eros ac, venenatis aliquet orci. Morbi diam lectus, aliquet vitae ultricies nec, porttitor a sem. Sed et nulla non est tristique gravida et in est. Duis malesuada sem quam, vel mattis ligula interdum et. Nunc sagittis consectetur mauris non vehicula. Praesent facilisis tempus neque. Proin interdum iaculis ligula, ac pellentesque nibh. Nam ullamcorper scelerisque sapien, sit amet interdum felis gravida vitae. Phasellus volutpat vestibulum velit id faucibus. Nam auctor congue porttitor. Sed eleifend neque tellus, id molestie purus molestie ut. Donec dictum, magna eu fermentum placerat, neque erat egestas urna, in malesuada leo orci nec nisi. Etiam at tellus laoreet nulla ullamcorper ornare. Aliquam sagittis tellus fermentum tempus faucibus.",
+      "overlayColor": "#ef4581"
+    },
+    {
+      "id": 7,
+      "title": "Graphic Design Project 1",
+      "categoryId": 2,
+      "imageUrl": "static/images/graphicdesign1.jpg",
+      "linkUrl": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ligula est, maximus sed eros ac, venenatis aliquet orci. Morbi diam lectus, aliquet vitae ultricies nec, porttitor a sem. Sed et nulla non est tristique gravida et in est. Duis malesuada sem quam, vel mattis ligula interdum et. Nunc sagittis consectetur mauris non vehicula. Praesent facilisis tempus neque. Proin interdum iaculis ligula, ac pellentesque nibh. Nam ullamcorper scelerisque sapien, sit amet interdum felis gravida vitae. Phasellus volutpat vestibulum velit id faucibus. Nam auctor congue porttitor. Sed eleifend neque tellus, id molestie purus molestie ut. Donec dictum, magna eu fermentum placerat, neque erat egestas urna, in malesuada leo orci nec nisi. Etiam at tellus laoreet nulla ullamcorper ornare. Aliquam sagittis tellus fermentum tempus faucibus.",
+      "overlayColor": "#ef4581"
+    },
+    {
+      "id": 8,
+      "title": "Graphic Design Project 2",
+      "categoryId": 2,
+      "imageUrl": "static/images/graphicdesign2.jpg",
+      "linkUrl": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ligula est, maximus sed eros ac, venenatis aliquet orci. Morbi diam lectus, aliquet vitae ultricies nec, porttitor a sem. Sed et nulla non est tristique gravida et in est. Duis malesuada sem quam, vel mattis ligula interdum et. Nunc sagittis consectetur mauris non vehicula. Praesent facilisis tempus neque. Proin interdum iaculis ligula, ac pellentesque nibh. Nam ullamcorper scelerisque sapien, sit amet interdum felis gravida vitae. Phasellus volutpat vestibulum velit id faucibus. Nam auctor congue porttitor. Sed eleifend neque tellus, id molestie purus molestie ut. Donec dictum, magna eu fermentum placerat, neque erat egestas urna, in malesuada leo orci nec nisi. Etiam at tellus laoreet nulla ullamcorper ornare. Aliquam sagittis tellus fermentum tempus faucibus.",
+      "overlayColor": "#ef4581"
+    },
+    {
+      "id": 9,
+      "title": "Graphic Design Project 3",
+      "categoryId": 2,
+      "imageUrl": "static/images/graphicdesign3.jpg",
+      "linkUrl": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ligula est, maximus sed eros ac, venenatis aliquet orci. Morbi diam lectus, aliquet vitae ultricies nec, porttitor a sem. Sed et nulla non est tristique gravida et in est. Duis malesuada sem quam, vel mattis ligula interdum et. Nunc sagittis consectetur mauris non vehicula. Praesent facilisis tempus neque. Proin interdum iaculis ligula, ac pellentesque nibh. Nam ullamcorper scelerisque sapien, sit amet interdum felis gravida vitae. Phasellus volutpat vestibulum velit id faucibus. Nam auctor congue porttitor. Sed eleifend neque tellus, id molestie purus molestie ut. Donec dictum, magna eu fermentum placerat, neque erat egestas urna, in malesuada leo orci nec nisi. Etiam at tellus laoreet nulla ullamcorper ornare. Aliquam sagittis tellus fermentum tempus faucibus.",
+      "overlayColor": "#ef4581"
+    },
+    {
+      "id": 10,
+      "title": "Logo Design Project 1",
+      "categoryId": 3,
+      "imageUrl": "static/images/logodesign1.png",
+      "linkUrl": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ligula est, maximus sed eros ac, venenatis aliquet orci. Morbi diam lectus, aliquet vitae ultricies nec, porttitor a sem. Sed et nulla non est tristique gravida et in est. Duis malesuada sem quam, vel mattis ligula interdum et. Nunc sagittis consectetur mauris non vehicula. Praesent facilisis tempus neque. Proin interdum iaculis ligula, ac pellentesque nibh. Nam ullamcorper scelerisque sapien, sit amet interdum felis gravida vitae. Phasellus volutpat vestibulum velit id faucibus. Nam auctor congue porttitor. Sed eleifend neque tellus, id molestie purus molestie ut. Donec dictum, magna eu fermentum placerat, neque erat egestas urna, in malesuada leo orci nec nisi. Etiam at tellus laoreet nulla ullamcorper ornare. Aliquam sagittis tellus fermentum tempus faucibus.",
+      "overlayColor": "#ef4581"
+    },
+    {
+      "id": 11,
+      "title": "Logo Design Project 2",
+      "categoryId": 3,
+      "imageUrl": "static/images/logodesign2.png",
+      "linkUrl": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ligula est, maximus sed eros ac, venenatis aliquet orci. Morbi diam lectus, aliquet vitae ultricies nec, porttitor a sem. Sed et nulla non est tristique gravida et in est. Duis malesuada sem quam, vel mattis ligula interdum et. Nunc sagittis consectetur mauris non vehicula. Praesent facilisis tempus neque. Proin interdum iaculis ligula, ac pellentesque nibh. Nam ullamcorper scelerisque sapien, sit amet interdum felis gravida vitae. Phasellus volutpat vestibulum velit id faucibus. Nam auctor congue porttitor. Sed eleifend neque tellus, id molestie purus molestie ut. Donec dictum, magna eu fermentum placerat, neque erat egestas urna, in malesuada leo orci nec nisi. Etiam at tellus laoreet nulla ullamcorper ornare. Aliquam sagittis tellus fermentum tempus faucibus.",
+      "overlayColor": "#ef4581"
+    },
+    {
+      "id": 12,
+      "title": "Logo Design Project 3",
+      "categoryId": 3,
+      "imageUrl": "static/images/logodesign3.png",
+      "linkUrl": "",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ligula est, maximus sed eros ac, venenatis aliquet orci. Morbi diam lectus, aliquet vitae ultricies nec, porttitor a sem. Sed et nulla non est tristique gravida et in est. Duis malesuada sem quam, vel mattis ligula interdum et. Nunc sagittis consectetur mauris non vehicula. Praesent facilisis tempus neque. Proin interdum iaculis ligula, ac pellentesque nibh. Nam ullamcorper scelerisque sapien, sit amet interdum felis gravida vitae. Phasellus volutpat vestibulum velit id faucibus. Nam auctor congue porttitor. Sed eleifend neque tellus, id molestie purus molestie ut. Donec dictum, magna eu fermentum placerat, neque erat egestas urna, in malesuada leo orci nec nisi. Etiam at tellus laoreet nulla ullamcorper ornare. Aliquam sagittis tellus fermentum tempus faucibus.",
+      "overlayColor": "#ef4581"
+    }
+  ]
+}

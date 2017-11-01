@@ -1,3 +1,10 @@
+This work is licensed under the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+
+Portions of this repository have been adapted from [Richard Feldman's Elm Workshop](https://github.com/rtfeldman/elm-workshop).
+
+Also, some of the setup verfication ideas were adapted from this repository: [Elm Curriculum](https://github.com/mbuscemi/elm-curriculum)
+
+
 # Introduction to Elm (Workshop)
 
 Interested in Elm, but not sure where to begin? This is the workshop for you!
@@ -28,7 +35,7 @@ For this class, you will need to bring and prepare:
 
 ### Setup 
 
-Before the workshop, you'll want to make sure that your enviroment and project are setup. Follow the steps below to accomplish this. 
+Before the workshop, you'll want to make sure that your environment and project are setup. Follow the steps below to accomplish this. 
 
 #### Environment
  
@@ -52,7 +59,7 @@ Note: Tab characters are syntax errors in Elm code, so make sure your editor is 
 On your computer, complete the following steps:
 1. Navigate to a directory on your computer where you have permission to create and edit directories and files
 2. Run `git clone https://github.com/Elm-Detroit/elm-workshop.git`
-3. Run `cd elm-workshop`
+3. Run `cd elm-workshop/setup`
 
 #### Verify Your Setup
 1. Run `elm package install --yes` (this either installs the packages specified in elm-package.json or creates elm-package.json with the core modules)
