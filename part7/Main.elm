@@ -64,7 +64,20 @@ We will see this when we introduce some interaction.
 
 view : Model -> Html Msg
 view model =
-    text (toString model)
+    div [ class "container" ]
+        [ div [ class "row" ]
+            [ div
+                [ class "col"
+                ]
+                [ br [] [] ]
+            ]
+        , div [ class "row" ]
+            [ div
+                [ class "col"
+                ]
+                [ h1 [] [ text "Elmfolio" ] ]
+            ]
+        ]
 
 
 
