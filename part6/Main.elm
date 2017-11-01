@@ -13,13 +13,22 @@ The `initialModel` function initializes our Model. This function is called in `i
 --}
 
 
-initialModel : Model
-initialModel =
-    { portfolio = Portfolio [] [] }
+initialModel : String -> Model
+initialModel url =
+    { errorMessage = ""
+    , portfolio =
+        { categories = []
+        , items = []
+        }
+    , apiUrl = url
+    }
 
 
 type alias Model =
-    { portfolio : Portfolio }
+    { errorMessage : String
+    , portfolio : Portfolio
+    , apiUrl : String
+    }
 
 
 type alias Portfolio =
@@ -72,7 +81,73 @@ type Msg
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    ( model, Cmd.none )
+    case msg of
+        ApiResponse response ->
+            case response of
+                Ok response ->
+                    let
+                        updatedModel =
+                            { model | portfolio = response }
+                    in
+                    ( updatedModel, Cmd.none )
+
+                Err error ->
+                    let
+                        errorMessage =
+                            "An error occurred: " ++ toString error
+                    in
+                    ( { model | errorMessage = errorMessage }, Cmd.none )
+
+        None ->
+            ( model, Cmd.none )
+
+
+
+-- Http
+
+
+getPortfolio : String -> Cmd Msg
+getPortfolio url =
+    Http.send ApiResponse (Http.get url portfolioDecoder)
+
+
+
+-- JSON Decoding
+
+
+portfolioDecoder : Decoder Portfolio
+portfolioDecoder =
+    decode Portfolio
+        |> required "categories" (Decode.list categoryDecoder)
+        |> required "items" (Decode.list itemDecoder)
+
+
+categoryDecoder : Decoder Category
+categoryDecoder =
+    decode Category
+        |> required "id" Decode.int
+        |> required "label" Decode.string
+
+
+itemDecoder : Decoder Item
+itemDecoder =
+    decode Item
+        |> required "id" Decode.int
+        |> required "title" Decode.string
+        |> required "categoryId" Decode.int
+        |> required "imageUrl" Decode.string
+        |> required "linkUrl" Decode.string
+        |> required "description" Decode.string
+        |> required "overlayColor" Decode.string
+
+
+
+-- Helpers
+
+
+(=>) : a -> b -> ( a, b )
+(=>) =
+    (,)
 
 
 
@@ -103,7 +178,7 @@ main =
     Html.program
         { view = view
         , update = update
-        , init = init
+        , init = init "http://www.mocky.io/v2/59f8cfa92d0000891dad41ed"
         , subscriptions = subscriptions
         }
 
@@ -115,5 +190,6 @@ up. For now, we don't need to run any commands so we'll use Cmd.none here.
 --}
 
 
-init =
-    ( initialModel, Cmd.none )
+init : String -> ( Model, Cmd Msg )
+init url =
+    ( initialModel url, getPortfolio url )
