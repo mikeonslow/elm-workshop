@@ -61,14 +61,14 @@ In our case, we'll likely want to model each of the types we found above with a 
 
 In our `Main.elm` file, let's go ahead and add a new `type alias` for both `Category` and `Item` line 20
 just below 
-```
+```elm
 type alias Model = 
     {}
 ```
 
 New code:
 
-```
+```elm
 type alias Category =
     { id : Int, label : String }
 
