@@ -1,12 +1,21 @@
 module Main exposing (..)
 
+{-| THIS FILE IS NOT PART OF THE COURSE! It is only to verify that you
+have everything set up properly.
+-}
+
 import Html exposing (Html, div, h1, header, img, text)
-import Html.Attributes exposing (class, src, width)
+import Html.Attributes exposing (class, src)
 
 
-{--Model
-The `initialModel` function initializes our Model. This function is called in `init` and outputs a Model
---}
+main : Program Never Model Msg
+main =
+    Html.program
+        { view = view
+        , update = update
+        , init = ( initialModel, Cmd.none )
+        , subscriptions = \_ -> Sub.none
+        }
 
 
 initialModel : Model
@@ -18,26 +27,13 @@ type alias Model =
     {}
 
 
-
-{--View
-The function `view` renders an Html element using our application model.
-Note that the type signature is Model -> Html Msg. This means that this function transforms an argument
-of Model into an Html element would produce messages tagged with Msg.
-
-We will see this when we introduce some interaction.
---}
-
-
 view : Model -> Html Msg
 view model =
-    text "It works!!!"
-
-
-
-{--Update--
-The `update` function will be called by Html.program each time a message is received.
-This update function responds to messages (Msg), updating the model and returning commands as needed.
---}
+    div [ class "content" ]
+        [ img [ src "static/images/elm-detroit.png", class "logo" ] []
+        , header [] [ h1 [] [ text "Introduction to Elm" ] ]
+        , div [ class "intro-message" ] [ text "You are good to go." ]
+        ]
 
 
 type Msg
@@ -47,47 +43,3 @@ type Msg
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     ( model, Cmd.none )
-
-
-
-{--Subscriptions
-In Elm, using subscriptions is how your application can listen for external input. Some examples are:
- - Keyboard events
- - Mouse movements
- - Browser locations changes
- - Websocket events
-
-In this application, we don't have a need for any active subscriptions so we add in Sub.none
---}
-
-
-subscriptions =
-    \_ -> Sub.none
-
-
-
-{--Program setup and initialization--}
-{--
-The `main` function is the entry point for our app which means it's the first thing that is run
---}
-
-
-main : Program Never Model Msg
-main =
-    Html.program
-        { view = view
-        , update = update
-        , init = init
-        , subscriptions = subscriptions
-        }
-
-
-
-{--The `init` function is run by `main` upon application startup and allows us to set
-our app's initial state as well as scheduling any commands we'd like to run after the app starts
-up. For now, we don't need to run any commands so we'll use Cmd.none here.
---}
-
-
-init =
-    ( initialModel, Cmd.none )
