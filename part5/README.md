@@ -15,15 +15,15 @@ So now we know that we want to route messages that come back from the API to `Ap
 The first step is to change the `update` function so that it uses a `case` expression, here's a quick example of using
 `case` to handle a `Maybe`:
 
-```
+```elm
 case maybe of
   Just value -> value
-  Nothing -> [
+  Nothing -> []
 ```
 
 Let's modify our `update` function as follows:
 
-```
+```elm
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
@@ -37,7 +37,7 @@ update msg model =
 For now, both of our messages cause the same effect to happen (nothing!). Let's modify the `ApiResponse` case so that it
 receives the `response` from the API.
 
-```
+```elm
         ApiResponse response ->
             case response of
                 Ok response ->
@@ -61,7 +61,7 @@ we'll update the `errorMessage` field of the `Model` (we still need to add this)
 Next, let's add two new fields to our `Model`, the first is an `errorMessage` and the second is an `apiUrl` that 
 we'll use for our request:
 
-```
+```elm
 type alias Model =
     { errorMessage : String
     , portfolio : Portfolio
@@ -74,7 +74,7 @@ key updates here:
 
 Change `initialModel` from
 
-```
+```elm
 initialModel : Model
 initialModel =
     { portfolio = Portfolio [] [] }
@@ -82,7 +82,7 @@ initialModel =
 
 to
 
-```
+```elm
 initialModel : String -> Model
 initialModel url =
     { errorMessage = ""
@@ -98,7 +98,7 @@ Here's what we've done here:
 
 - Changed the function signature and definition for `initialModel` to except a `String` (`url`) as it's single argument:
 
-  ```
+  ```elm
   initialModel : String -> Model
   initialModel url =
   ```
@@ -108,7 +108,7 @@ in part 3
 
 Next, let's add a new section above the `main` function:
 
-```
+```elm
 -- Http
 
 
@@ -124,7 +124,7 @@ We'll use this in the `init` function to schedule the command to call out to the
 Let's do this now as well as passing in the API URL to `initialModel` and scheduling our
 command to call out to the API:
 
-```
+```elm
 init : String -> ( Model, Cmd Msg )
 init url =
     ( initialModel url, getPortfolio url )
@@ -132,7 +132,7 @@ init url =
 
 We also need to update the call to `init = init` in the `main` function:
 
-```
+```elm
 main : Program Never Model Msg
 main =
     Html.program
@@ -146,7 +146,7 @@ main =
 Once `init` is updated, we need to add decoders to our file to translate the JSON object returned by
 the API into our `Portfolio` type which holds are `List Category` and `List Item`.
 
-```
+```elm
 -- JSON Decoding
 
 

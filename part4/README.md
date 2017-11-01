@@ -15,7 +15,7 @@ In this application we'll mostly use union types to model the messages that are 
 our `update` function but this is just one of may uses for union types. Some examples of union types in
 action are Elm's `Maybe` type:
 
-```
+```elm
 type Maybe a
     = Just a
     | Nothing
@@ -28,14 +28,14 @@ index)
 
 Elm's built in type `Bool` (used to store boolean `true | false` values) is also a union type
 
-```
+```elm
 type Bool = True | False
 ```
 
 Let's move on to using union types ourselves. Currently our `Msg` type is a union type with one possible
 state `None`
 
-```
+```elm
 type Msg
     = None
 ```
@@ -47,7 +47,7 @@ our requirements for the app. First and foremost, we need to fetch data from the
 Let's update the `type Msg` to have another message called `ApiResponse`, this message will also need some data associated
 with the API response so that we know if the request succeeded or failed. Update the `Msg` definition as follows:
 
-```
+```elm
 type Msg
     = ApiResponse (Result Http.Error Portfolio)
     | None
@@ -58,7 +58,7 @@ route the response (regardless of whether or not it succeeds) to our new message
 returns a `Result` with this data, we need to handle type. Parenthesis are needed here because `Result` is actually
 a union type itself:
 
-```
+```elm
 type Result error value
     = Ok value
     | Err error
@@ -101,14 +101,14 @@ existing imports:
 
 Replace
 
-```
+```elm
 import Html exposing (Html, div, h1, header, img, text)
 import Html.Attributes exposing (class, src, width)
 ```
 
 with
 
-```
+```elm
 import Html exposing (..)
 import Html.Attributes exposing (attribute, class, classList, href, src, target, type_, width)
 import Html.Events exposing (onClick)

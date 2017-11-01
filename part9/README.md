@@ -32,7 +32,7 @@ Lastly, a basic example of using this pattern was created in Ellie: [https://ell
 We need to update our `main` function to using `Html.programWithFlags` instead of `Html.program`, we can
 replace our `main` function with the following code to accomplish this:
 
-```
+```elm
 main : Program String Model Msg
 main =
     Html.programWithFlags

@@ -18,7 +18,7 @@ An existing API has been created and is ready for us to use: [http://www.mocky.i
 
 Okay, so we now know that the `categories` field contains a list `[...]` of objects `{...}` with an `id` and a `label`. 
 
-```
+```json
 categories: [
     {
         id: 1,
@@ -37,7 +37,7 @@ categories: [
 
 We also know that we have a list of `items` with each item being an object like the one shown below:
 
-```
+```json
 {
     id: 1,
     title: "Web Development Project 1",
@@ -97,7 +97,7 @@ we can translate the API's response directly to this container type that we're c
 
 Let's add this new `type alias` directly above our `Category` definition.
 
-```
+```elm
 type alias Portfolio =
     { categories : List Category
     , items : List Item
@@ -106,7 +106,7 @@ type alias Portfolio =
 
 For our `Model`, let's make it a bit more interesting by adding a single field called `portfoio`
 
-```
+```elm
 type alias Model =
     { portfolio : Portfolio}
 ```
@@ -115,7 +115,7 @@ Since we changed the definition of `Model`, we also need to update our `initialM
 
 Let's update `initialModel` as follows:
 
-```
+```elm
 initialModel : Model
 initialModel =
     { portfolio = Portfolio [] [] }
@@ -130,7 +130,7 @@ screen.
 
 Update the `view` function as follows:
 
-```
+```elm
 view model =
     text (toString model)
 ```
