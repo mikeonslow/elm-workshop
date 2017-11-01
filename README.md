@@ -73,4 +73,3 @@ On your computer, complete the following steps:
     <img src="https://github.com/Elm-Detroit/elm-workshop/blob/master/static/images/verification-success.png" width="350" alt="Verification Image" />
    
 
-
