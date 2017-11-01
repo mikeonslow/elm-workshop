@@ -3,6 +3,8 @@ Back to [Part 7](../part7/README.md)
 
 # Introduction to Elm (Part 8)
 
+>Before getting started with this part, be sure to `cd` into the directory `part8` in your project
+
 Currently, we have no real way to _interact_ with the app, in this section, we'll wire up some new 
 messages that will be trigged by the `onClick` event for our category buttons as well as our `Item` images.
 This is the last step in finishing off our first Elm web app!
@@ -10,7 +12,7 @@ This is the last step in finishing off our first Elm web app!
 Let's start with updating both our union type for `Msg` to account for handling an `Item` click as well as
 a `Category` click. To accomplish this, we'll add two new options to our `Msg` union type:
 
-```
+```elm
 type Msg
     = ApiResponse (Result Http.Error Portfolio)
     | CategoryClicked Int
@@ -25,7 +27,7 @@ Now that we've added these, we're free to handle our two `TODO` items in `Main.e
 
 First, let's update the `buttonOnClick` in the `let` expression for `viewCategoryButton`
 
-```
+```elm
 buttonOnClick =
     if categorySelected then
         []
@@ -35,7 +37,7 @@ buttonOnClick =
 
 Next, let's replace the current `viewItem` function with the following:
 
-```
+```elm
 viewItem : Item -> Html Msg
 viewItem item =
     div
@@ -54,7 +56,7 @@ the attributes `List` for the `img` tag so that it's more readable.
 
 The final step is to add two new patterns to our `case` expression in the `update` function:
 
-```
+```elm
         CategoryClicked categoryId ->
             let
                 updatedModel =

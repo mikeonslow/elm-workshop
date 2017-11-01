@@ -3,6 +3,8 @@ Back to [Part 6](../part6/README.md)
 
 # Introduction to Elm (Part 7)
 
+>Before getting started with this part, be sure to `cd` into the directory `part7` in your project
+
 In this section, we'll be updating our `view` function to display the data returned by the API in a meaningful
 way. 
 
@@ -10,11 +12,15 @@ way.
 same outputs on the screen. Almost all of these functions have the same type signature to make them easily
 composable. For instance, here's the type definition of the `h1` function which, in turn produces an `<h1>` HTML tag:
 
-`h1 : List (Attribute msg) -> List (Html msg) -> Html msg`
+```elm
+h1 : List (Attribute msg) -> List (Html msg) -> Html msg
+```
 
 Calling this in practice would look like:
 
-`h1 [ ... attributes here... ] [ ..child tags here...]`
+```elm
+h1 [ ... attributes here... ] [ ..child tags here...]
+```
  
 As with tags, HTML attributes are also simply functions like `class`, `style` etc. Some of the implementations of these vary
 depending on what the value of the attribute will look like but as with most Elm things, it will generally 
@@ -23,7 +29,7 @@ be standardized as much as possible to avoid confusion `h1 [ attributeOne argume
 So with that, let's start updating our `view` function. Let's remove the code we currently have
 in the function `text (toString model)` and replace it with the following view code, then save the file:
 
-```
+```elm
 view : Model -> Html Msg
 view model =
     let
@@ -67,7 +73,7 @@ Next, we need to add a couple of extra fields to our `Model` to hold our app's s
 
 Let's update the definition of `Model` from
 
-```
+```elm
 type alias Model =
     { errorMessage : String
     , portfolio : Portfolio
@@ -77,7 +83,7 @@ type alias Model =
 
 to
 
-```
+```elm
 type alias Model =
     { errorMessage : String
     , portfolio : Portfolio
@@ -99,7 +105,7 @@ shortly).
 As we've done before when we updated the `Model` definition, we need to also update our `initialModel` function. 
 Let's replace our `initialModel` definition with the following:
  
-```
+```elm
 initialModel : String -> Model
 initialModel url =
     { errorMessage = ""
