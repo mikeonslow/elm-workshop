@@ -1,3 +1,10 @@
+This work is licensed under the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+
+Portions of this repository have been adapted from [Richard Feldman's Elm Workshop](https://github.com/rtfeldman/elm-workshop).
+
+Also, some of the setup verfication ideas were adapted from this repository: [Elm Curriculum](https://github.com/mbuscemi/elm-curriculum)
+
+
 # Introduction to Elm (Workshop)
 
 Interested in Elm, but not sure where to begin? This is the workshop for you!
