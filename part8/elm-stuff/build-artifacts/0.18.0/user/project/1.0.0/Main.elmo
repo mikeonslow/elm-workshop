@@ -1,0 +1,516 @@
+var _user$project$Main$subscriptions = function (_p0) {
+	return _elm_lang$core$Platform_Sub$none;
+};
+var _user$project$Main$getSelectedItem = F2(
+	function (_p1, selectedCategoryId) {
+		var _p2 = _p1;
+		var _p3 = _p2.selectedItemId;
+		if (_p3.ctor === 'Nothing') {
+			return _elm_lang$core$Maybe$Nothing;
+		} else {
+			return _elm_lang$core$List$head(
+				A2(
+					_elm_lang$core$List$filter,
+					function (i) {
+						return _elm_lang$core$Native_Utils.eq(i.id, _p3._0) && _elm_lang$core$Native_Utils.eq(i.categoryId, selectedCategoryId);
+					},
+					_p2.portfolio.items));
+		}
+	});
+var _user$project$Main$getSelectedCategoryId = function (_p4) {
+	var _p5 = _p4;
+	var firstCategory = A2(
+		_elm_lang$core$Maybe$withDefault,
+		1,
+		A2(
+			_elm_lang$core$Maybe$map,
+			function (_) {
+				return _.id;
+			},
+			_elm_lang$core$List$head(_p5.portfolio.categories)));
+	var updatedSelectedCategoryId = function () {
+		var _p6 = _p5.selectedCategoryId;
+		if (_p6.ctor === 'Nothing') {
+			return firstCategory;
+		} else {
+			return _p6._0;
+		}
+	}();
+	return updatedSelectedCategoryId;
+};
+var _user$project$Main_ops = _user$project$Main_ops || {};
+_user$project$Main_ops['=>'] = F2(
+	function (v0, v1) {
+		return {ctor: '_Tuple2', _0: v0, _1: v1};
+	});
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p7 = msg;
+		if (_p7.ctor === 'ApiResponse') {
+			var _p8 = _p7._0;
+			if (_p8.ctor === 'Ok') {
+				var updatedModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{portfolio: _p8._0});
+				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
+			} else {
+				var errorMessage = A2(
+					_elm_lang$core$Basics_ops['++'],
+					'An error occurred: ',
+					_elm_lang$core$Basics$toString(_p8._0));
+				return {
+					ctor: '_Tuple2',
+					_0: _elm_lang$core$Native_Utils.update(
+						model,
+						{errorMessage: errorMessage}),
+					_1: _elm_lang$core$Platform_Cmd$none
+				};
+			}
+		} else {
+			return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
+		}
+	});
+var _user$project$Main$viewError = function (error) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('alert alert-danger'),
+			_1: {
+				ctor: '::',
+				_0: A2(_elm_lang$html$Html_Attributes$attribute, 'role', 'alert'),
+				_1: {ctor: '[]'}
+			}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$strong,
+				{ctor: '[]'},
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html$text(error),
+					_1: {ctor: '[]'}
+				}),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Main$viewSelectedItem = function (item) {
+	var contents = function () {
+		var _p9 = item;
+		if (_p9.ctor === 'Nothing') {
+			return {ctor: '[]'};
+		} else {
+			var _p10 = _p9._0;
+			return {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('col-6'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$img,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$src(_p10.imageUrl),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$class('img-fluid'),
+									_1: {ctor: '[]'}
+								}
+							},
+							{ctor: '[]'}),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('col-6'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$h3,
+								{ctor: '[]'},
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(_p10.title),
+									_1: {ctor: '[]'}
+								}),
+							_1: {
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$hr,
+									{ctor: '[]'},
+									{ctor: '[]'}),
+								_1: {
+									ctor: '::',
+									_0: _elm_lang$html$Html$text(_p10.description),
+									_1: {
+										ctor: '::',
+										_0: A2(
+											_elm_lang$html$Html$br,
+											{ctor: '[]'},
+											{ctor: '[]'}),
+										_1: {
+											ctor: '::',
+											_0: A2(
+												_elm_lang$html$Html$br,
+												{ctor: '[]'},
+												{ctor: '[]'}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$a,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$href(_p10.linkUrl),
+														_1: {
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$target('_blank'),
+															_1: {ctor: '[]'}
+														}
+													},
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html$text(_p10.linkUrl),
+														_1: {ctor: '[]'}
+													}),
+												_1: {ctor: '[]'}
+											}
+										}
+									}
+								}
+							}
+						}),
+					_1: {ctor: '[]'}
+				}
+			};
+		}
+	}();
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('row selected-item-container'),
+			_1: {ctor: '[]'}
+		},
+		contents);
+};
+var _user$project$Main$viewItem = function (item) {
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('col-4 item-panel'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$img,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$src(item.imageUrl),
+					_1: {
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('img-fluid'),
+						_1: {ctor: '[]'}
+					}
+				},
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		});
+};
+var _user$project$Main$viewItems = F3(
+	function (_p11, selectedCategoryId, selectedItemId) {
+		var _p12 = _p11;
+		var _p13 = _p12.errorMessage;
+		var filteredItems = A2(
+			_elm_lang$core$List$map,
+			_user$project$Main$viewItem,
+			A2(
+				_elm_lang$core$List$filter,
+				function (i) {
+					return _elm_lang$core$Native_Utils.eq(i.categoryId, selectedCategoryId);
+				},
+				_p12.portfolio.items));
+		var contents = _elm_lang$core$String$isEmpty(_p13) ? A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('row items-container'),
+				_1: {ctor: '[]'}
+			},
+			filteredItems) : _user$project$Main$viewError(_p13);
+		return contents;
+	});
+var _user$project$Main$viewCategoryButton = F2(
+	function (selectedCategoryId, category) {
+		var categorySelected = _elm_lang$core$Native_Utils.eq(selectedCategoryId, category.id);
+		var buttonOnClick = categorySelected ? {ctor: '[]'} : {ctor: '[]'};
+		var classes = _elm_lang$html$Html_Attributes$classList(
+			{
+				ctor: '::',
+				_0: {ctor: '_Tuple2', _0: 'btn btn-category', _1: true},
+				_1: {
+					ctor: '::',
+					_0: {ctor: '_Tuple2', _0: 'btn-primary', _1: categorySelected},
+					_1: {
+						ctor: '::',
+						_0: {ctor: '_Tuple2', _0: 'btn-secondary', _1: !categorySelected},
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+		var buttonsBaseAttrs = {
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$type_('button'),
+			_1: {
+				ctor: '::',
+				_0: classes,
+				_1: {ctor: '[]'}
+			}
+		};
+		var buttonAttrs = A2(_elm_lang$core$Basics_ops['++'], buttonsBaseAttrs, buttonOnClick);
+		return A2(
+			_elm_lang$html$Html$button,
+			buttonAttrs,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html$text(category.label),
+				_1: {ctor: '[]'}
+			});
+	});
+var _user$project$Main$viewCategoryNavbar = F2(
+	function (_p14, selectedCategoryId) {
+		var _p15 = _p14;
+		return A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('row'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('col'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('nav-category'),
+								_1: {ctor: '[]'}
+							},
+							A2(
+								_elm_lang$core$List$map,
+								_user$project$Main$viewCategoryButton(selectedCategoryId),
+								_p15.categories)),
+						_1: {ctor: '[]'}
+					}),
+				_1: {ctor: '[]'}
+			});
+	});
+var _user$project$Main$view = function (model) {
+	var selectedCategoryId = _user$project$Main$getSelectedCategoryId(model);
+	var selectedItem = A2(_user$project$Main$getSelectedItem, model, selectedCategoryId);
+	var portfolio = model.portfolio;
+	return A2(
+		_elm_lang$html$Html$div,
+		{
+			ctor: '::',
+			_0: _elm_lang$html$Html_Attributes$class('container'),
+			_1: {ctor: '[]'}
+		},
+		{
+			ctor: '::',
+			_0: A2(
+				_elm_lang$html$Html$div,
+				{
+					ctor: '::',
+					_0: _elm_lang$html$Html_Attributes$class('row'),
+					_1: {ctor: '[]'}
+				},
+				{
+					ctor: '::',
+					_0: A2(
+						_elm_lang$html$Html$div,
+						{
+							ctor: '::',
+							_0: _elm_lang$html$Html_Attributes$class('col'),
+							_1: {ctor: '[]'}
+						},
+						{
+							ctor: '::',
+							_0: A2(
+								_elm_lang$html$Html$br,
+								{ctor: '[]'},
+								{ctor: '[]'}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}),
+			_1: {
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$div,
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html_Attributes$class('row'),
+						_1: {ctor: '[]'}
+					},
+					{
+						ctor: '::',
+						_0: A2(
+							_elm_lang$html$Html$div,
+							{
+								ctor: '::',
+								_0: _elm_lang$html$Html_Attributes$class('col'),
+								_1: {ctor: '[]'}
+							},
+							{
+								ctor: '::',
+								_0: A2(
+									_elm_lang$html$Html$h1,
+									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html$text('Elmfolio'),
+										_1: {ctor: '[]'}
+									}),
+								_1: {ctor: '[]'}
+							}),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
+					ctor: '::',
+					_0: A2(_user$project$Main$viewCategoryNavbar, portfolio, selectedCategoryId),
+					_1: {
+						ctor: '::',
+						_0: _user$project$Main$viewSelectedItem(selectedItem),
+						_1: {
+							ctor: '::',
+							_0: A3(_user$project$Main$viewItems, model, selectedCategoryId, selectedItem),
+							_1: {ctor: '[]'}
+						}
+					}
+				}
+			}
+		});
+};
+var _user$project$Main$initialModel = function (url) {
+	return {
+		errorMessage: '',
+		portfolio: {
+			categories: {ctor: '[]'},
+			items: {ctor: '[]'}
+		},
+		selectedCategoryId: _elm_lang$core$Maybe$Nothing,
+		selectedItemId: _elm_lang$core$Maybe$Nothing,
+		apiUrl: url
+	};
+};
+var _user$project$Main$Model = F5(
+	function (a, b, c, d, e) {
+		return {errorMessage: a, portfolio: b, selectedCategoryId: c, selectedItemId: d, apiUrl: e};
+	});
+var _user$project$Main$Portfolio = F2(
+	function (a, b) {
+		return {categories: a, items: b};
+	});
+var _user$project$Main$Category = F2(
+	function (a, b) {
+		return {id: a, label: b};
+	});
+var _user$project$Main$categoryDecoder = A3(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+	'label',
+	_elm_lang$core$Json_Decode$string,
+	A3(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+		'id',
+		_elm_lang$core$Json_Decode$int,
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$Main$Category)));
+var _user$project$Main$Item = F7(
+	function (a, b, c, d, e, f, g) {
+		return {id: a, title: b, categoryId: c, imageUrl: d, linkUrl: e, description: f, overlayColor: g};
+	});
+var _user$project$Main$itemDecoder = A3(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+	'overlayColor',
+	_elm_lang$core$Json_Decode$string,
+	A3(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+		'description',
+		_elm_lang$core$Json_Decode$string,
+		A3(
+			_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+			'linkUrl',
+			_elm_lang$core$Json_Decode$string,
+			A3(
+				_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+				'imageUrl',
+				_elm_lang$core$Json_Decode$string,
+				A3(
+					_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+					'categoryId',
+					_elm_lang$core$Json_Decode$int,
+					A3(
+						_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+						'title',
+						_elm_lang$core$Json_Decode$string,
+						A3(
+							_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+							'id',
+							_elm_lang$core$Json_Decode$int,
+							_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$Main$Item))))))));
+var _user$project$Main$portfolioDecoder = A3(
+	_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+	'items',
+	_elm_lang$core$Json_Decode$list(_user$project$Main$itemDecoder),
+	A3(
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$required,
+		'categories',
+		_elm_lang$core$Json_Decode$list(_user$project$Main$categoryDecoder),
+		_NoRedInk$elm_decode_pipeline$Json_Decode_Pipeline$decode(_user$project$Main$Portfolio)));
+var _user$project$Main$None = {ctor: 'None'};
+var _user$project$Main$ApiResponse = function (a) {
+	return {ctor: 'ApiResponse', _0: a};
+};
+var _user$project$Main$getPortfolio = function (url) {
+	return A2(
+		_elm_lang$http$Http$send,
+		_user$project$Main$ApiResponse,
+		A2(_elm_lang$http$Http$get, url, _user$project$Main$portfolioDecoder));
+};
+var _user$project$Main$init = function (url) {
+	return {
+		ctor: '_Tuple2',
+		_0: _user$project$Main$initialModel(url),
+		_1: _user$project$Main$getPortfolio(url)
+	};
+};
+var _user$project$Main$main = _elm_lang$html$Html$program(
+	{
+		view: _user$project$Main$view,
+		update: _user$project$Main$update,
+		init: _user$project$Main$init('http://www.mocky.io/v2/59f8cfa92d0000891dad41ed'),
+		subscriptions: _user$project$Main$subscriptions
+	})();
