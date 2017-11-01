@@ -67,6 +67,103 @@ view model =
     text (toString model)
 
 
+viewCategoryNavbar : Portfolio -> Int -> Html Msg
+viewCategoryNavbar { categories } selectedCategoryId =
+    div [ class "row" ]
+        [ div
+            [ class "col" ]
+            [ div [ class "nav-category" ]
+                (List.map (viewCategoryButton selectedCategoryId) categories)
+            ]
+        ]
+
+
+viewCategoryButton : Int -> Category -> Html Msg
+viewCategoryButton selectedCategoryId category =
+    let
+        categorySelected =
+            selectedCategoryId == category.id
+
+        buttonsBaseAttrs =
+            [ type_ "button", classes ]
+
+        buttonOnClick =
+            -- TODO add click handler in `else` here "onClick (CategoryClicked category.id)"
+            if categorySelected then
+                []
+            else
+                []
+
+        buttonAttrs =
+            buttonsBaseAttrs ++ buttonOnClick
+
+        classes =
+            classList
+                [ ( "btn btn-category", True )
+                , ( "btn-primary", categorySelected )
+                , ( "btn-secondary", not categorySelected )
+                ]
+    in
+    button buttonAttrs [ text category.label ]
+
+
+viewItems : Model -> Int -> Maybe Item -> Html Msg
+viewItems { portfolio, errorMessage } selectedCategoryId selectedItemId =
+    let
+        filteredItems =
+            portfolio.items |> List.filter (\i -> i.categoryId == selectedCategoryId) |> List.map viewItem
+
+        contents =
+            if String.isEmpty errorMessage then
+                div [ class "row items-container" ]
+                    filteredItems
+            else
+                viewError errorMessage
+    in
+    contents
+
+
+viewItem : Item -> Html Msg
+viewItem item =
+    -- TODO: Add click handler "onClick (ItemClicked item.id)" to attribute List for `img`
+    div
+        [ class "col-4 item-panel" ]
+        [ img [ src item.imageUrl, class "img-fluid" ] [] ]
+
+
+viewSelectedItem : Maybe Item -> Html msg
+viewSelectedItem item =
+    let
+        contents =
+            case item of
+                Nothing ->
+                    []
+
+                Just detail ->
+                    [ div [ class "col-6" ]
+                        [ img [ src detail.imageUrl, class "img-fluid" ] [] ]
+                    , div [ class "col-6" ]
+                        [ h3 [] [ text detail.title ]
+                        , hr [] []
+                        , text detail.description
+                        , br [] []
+                        , br [] []
+                        , a [ href detail.linkUrl, target "_blank" ] [ text detail.linkUrl ]
+                        ]
+                    ]
+    in
+    div [ class "row selected-item-container" ]
+        contents
+
+
+viewError : String -> Html Msg
+viewError error =
+    div [ class "alert alert-danger", attribute "role" "alert" ]
+        [ strong []
+            [ text error ]
+        ]
+
+
 
 {--Update--
 The `update` function will be called by Html.program each time a message is received.
@@ -148,6 +245,38 @@ itemDecoder =
 (=>) : a -> b -> ( a, b )
 (=>) =
     (,)
+
+
+getSelectedCategoryId : Model -> Int
+getSelectedCategoryId { portfolio, selectedCategoryId } =
+    let
+        firstCategory =
+            portfolio.categories
+                |> List.head
+                |> Maybe.map .id
+                |> Maybe.withDefault 1
+
+        updatedSelectedCategoryId =
+            case selectedCategoryId of
+                Nothing ->
+                    firstCategory
+
+                Just selected ->
+                    selected
+    in
+    updatedSelectedCategoryId
+
+
+getSelectedItem : Model -> Int -> Maybe Item
+getSelectedItem { portfolio, selectedItemId } selectedCategoryId =
+    case selectedItemId of
+        Nothing ->
+            Nothing
+
+        Just id ->
+            portfolio.items
+                |> List.filter (\i -> i.id == id && i.categoryId == selectedCategoryId)
+                |> List.head
 
 
 
