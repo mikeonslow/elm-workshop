@@ -1,155 +1,42 @@
 
-Back to [Part 4](../part4/README.md)
+Back to [Part 5](../part5/README.md)
 
-# Introduction to Elm (Part 5)
+# Introduction to Elm (Part 6)
 
-In this part, we'll use the `Http` library to send a request to the API and create the code necessary to receive that
-message by modifying the `update` function to use a `case` expression to route our updates based on the `Msg` that was
-sent.
+In this section, we'll explain JSON decoders and how they snap together like LEGOs to transform
+a string of JSON into concrete Elm types.
 
->Messages can be sent by user input (onClick etc.), as the result of a command (`Cmd`) or as the result of a subscription 
-(`Sub`)  
+If we look at the decoders we have for this app, we find that they match up semantically with our `type alias` for
+`Portfolio`, `Category` and `Item`.
 
-So now we know that we want to route messages that come back from the API to `ApiResponse`, so how do we go about doing that?
-
-The first step is to change the `update` function so that it uses a `case` expression, here's a quick example of using
-`case` to handle a `Maybe`:
+Types
 
 ```
-case maybe of
-  Just value -> value
-  Nothing -> [
-```
-
-Let's modify our `update` function as follows:
-
-```
-update : Msg -> Model -> ( Model, Cmd Msg )
-update msg model =
-    case msg of
-        ApiResponse response ->
-            ( model, Cmd.none )
-
-        None ->
-            ( model, Cmd.none )
-```
-
-For now, both of our messages cause the same effect to happen (nothing!). Let's modify the `ApiResponse` case so that it
-receives the `response` from the API.
-
-```
-        ApiResponse response ->
-            case response of
-                Ok response ->
-                    let
-                        updatedModel =
-                            { model | portfolio = response }
-                    in
-                    ( updatedModel, Cmd.none )
-
-                Err error ->
-                    let
-                        errorMessage =
-                            "An error occurred: " ++ toString error
-                    in
-                    ( { model | errorMessage = errorMessage }, Cmd.none )
-```
-
-So, we're now updating the `Model` if we get an `Ok response` as the result from `Http.send` if we get an `Err error` however
-we'll update the `errorMessage` field of the `Model` (we still need to add this) with that message.
-
-Next, let's add two new fields to our `Model`, the first is an `errorMessage` and the second is an `apiUrl` that 
-we'll use for our request:
-
-```
-type alias Model =
-    { errorMessage : String
-    , portfolio : Portfolio
-    , apiUrl : String
+type alias Portfolio =
+    { categories : List Category
+    , items : List Item
     }
-```
 
-Since, we've updated our `Model`, we'll need to update our `initialModel` function as well. We're going to make a few
-key updates here:
 
-Change `initialModel` from
+type alias Category =
+    { id : Int, label : String }
 
-```
-initialModel : Model
-initialModel =
-    { portfolio = Portfolio [] [] }
-```
 
-to
-
-```
-initialModel : String -> Model
-initialModel url =
-    { errorMessage = ""
-    , portfolio =
-        { categories = []
-        , items = []
-        }
-    , apiUrl = url
+type alias Item =
+    { id : Int
+    , title : String
+    , categoryId : Int
+    , imageUrl : String
+    , linkUrl : String
+    , description : String
+    , overlayColor : String
     }
-```
-
-Here's what we've done here:
-
-- Changed the function signature and defintion for `initialModel` to except a `String` (`url`) as it's single argument:
-
-  ```
-  initialModel : String -> Model
-  initialModel url =
-  ```
-- Updated the `portfolio` field to use the longform record defintion instead of the type constructor shortcut we implemented
-in part 3
-- We're setting `apiUrl` based on the `url` passed into `initialModel`
-
-Next, let's add a new section above the `main` function:
 
 ```
--- Http
 
-
-getPortfolio : String -> Cmd Msg
-getPortfolio url =
-    Http.send ApiResponse (Http.get url portfolioDecoder)
-```
-
-This function takes in a `String` for the API URL and returns a command `Cmd Msg`.
-
-We'll use this in the `init` function to schedule the command to call out to the API.
-
-Let's do this now as well as passing in the API URL to `initialModel` and scheduling our
-command to call out to the API:
+JSON Decoders
 
 ```
-init : String -> ( Model, Cmd Msg )
-init url =
-    ( initialModel url, getPortfolio url )
-```
-
-We also need to update the call to `init = init` in the `main` function:
-
-```
-main : Program Never Model Msg
-main =
-    Html.program
-        { view = view
-        , update = update
-        , init = init "http://www.mocky.io/v2/59f8cfa92d0000891dad41ed"
-        , subscriptions = subscriptions
-        }
-```
-
-Once `init` is updated, we need to add decoders to our file to translate the JSON object returned by
-the API into our `Portfolio` type which holds are `List Category` and `List Item`.
-
-```
--- JSON Decoding
-
-
 portfolioDecoder : Decoder Portfolio
 portfolioDecoder =
     decode Portfolio
@@ -174,54 +61,78 @@ itemDecoder =
         |> required "linkUrl" Decode.string
         |> required "description" Decode.string
         |> required "overlayColor" Decode.string
-
-
-
--- Helpers
-
-
-(=>) : a -> b -> ( a, b )
-(=>) =
-    (,)
 ```
 
-We'll discuss decoders more in the next section, but for, now let's run:
+For instance, our `portfolioDecoder` takes the full JSON string returned fromm the API and starts with defining how the
+top level fields `categories` and `items` should be decoded, then we _snap_ in our `categoryDecoder` and `itemDecoder`
+along with `Decode.list` to define how we'll want those decoded.
 
-`elm-live Main.elm --output=static/js/elm.js --pushstate --open`
+We continue to _snap_ in decoders all the way down to the point where we're using some of ELm built in primitive 
+decoders to decode a single field `required "id" Decode.int`.
 
-If things are working properly, we we'll see a massive wall of text with the data returned from the API
+Here we're using `Decode.list`, `Decode.string` and `Decode.int`, some other commonly used built in decoders are:
 
-This is where that little trick in `text (toString model)` in the `view` function becomes less valuable
-and the Elm debugger comes in handy.
+- `Decode.float - Decodes decimal values like 3.14 but can also decode whole numbers like 42`
+- `Decode.bool - Decodes true | false to True | False` 
 
-In the terminal where `elm-live` is running, let's hit `Ctrl+C` to step it from running and then, modify
-our command a bit:
+You can read more about JSON decoders in package documentation: 
 
-`elm-live Main.elm --output=static/js/elm.js --pushstate --open --debug`
+[http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Decode](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Decode)
 
-Adding the `--debug` flag here, recompiles the app with debug mode enabled. If this worked, you
-should see a small black UI at the bottom, right-hand side of your screen:
+>In this app, we're using a library called `elm-decode-pipeline` created by the good folks at No Red Ink. This library
+>allows us to simplify decoding more complex data structures and we've choosen to use it
 
-![Elm Debugger](static/images/elm-debugger.png)
-
-You can click "Explore History" to view details about your app as it runs:
-
-
-![Elm Debugger](static/images/elm-debugger-expanded.png)
-
-Here we can see that our `update` function ran once and routed to the message `ApiResponse Ok ...`
-and we can see that the `portfolio` field in our `Model` populated with lists of `Category` and `Item`
- successfully. 
+As a reminder, we can alias a module upon import by using the `as` keyword and we're currently giving the `Json.Decode.Pipeline`
+library a namespace of `Pipeline`
  
->One shortcoming of the Elm debugger is that it does not show the entire `Msg` passed in. We believe
-this will be addressed in the next release of the debugger but are not certain.
+`import Json.Decode.Pipeline as Pipeline exposing (decode, optional, required)`
+
+Additionally, we're directly exposing three functions from the library so that we can use them without the namespace
+prefix `exposing (decode, optional, required)`
+
+We're not actually using `optional` but wanted to show it is it is helpful in instances where either a.) you may not
+receive the field back from the API or the field _may_ be `null`. An optional field can be defined as follows and takes
+an additional argument which is the default value that should be substitutes should the field not exist or have a value
+of `null`. 
+
+`|> optional "overlayColor" Decode.string "#f9f9f9""`
+
+>The default value for the `optional` field must share the same type as the decoder used to decode that field
+
+Examples `...Decode.int 1`, `...Decode.string ""` or `...Decode.list []`. 
+
+Something like `...Decode.string 0` would cause
+a type mismatch and a compiler error.
+
+>IMPORTANT: Deocders must be defined with the fields in the same order that theyare defined in the `type alias`. If not, 
+you may not get a compiler error but may just get unexpected results
+
+#### Encoders
+
+We won't cover it much here but our Elm types can also be encoded should we need to translate them to a valid JSON string
+(ex: as part of the request payload for a JSON API).
+
+Let's say our API required a `userName` field to be passed with a `String` value. We could encode such a value as follows:
+
+```
+import Json.Encode as Encode
+
+apiEncoder data =
+    Encode.object
+          [ ("userName", Encode.string data.userName) ]
+```
+
+More on encoders and using them can be found at the links below:
+
+- Package Documentation [http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Encode](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Encode)
+- A Tutorial [https://github.com/alexspurling/elm-recipes/tree/master/json-encoding](https://github.com/alexspurling/elm-recipes/tree/master/json-encoding)
 
 #### Recap
 
-In this part, we accomplished a lot. We added code to wire up our API request and are now successfully 
-handling the response.
+In this part, we learned more about the JSON decoders that we added in the last section as well as a brief introduction
+to encoders. 
 
-In the next section, we'll explain JSON decoders and how they snap together like LEGOs to transform
-a string of JSON into concrete Elm types.
+In the next section, we'll start updating our `view` function to display the data returned by the API in a meaningful
+way. 
 
-Go to [Part 6](../part6/README.md)
+Go to [Part 7](../part7/README.md)
