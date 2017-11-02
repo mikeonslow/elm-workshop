@@ -3,7 +3,7 @@ Back to [Part 3](../part3/README.md)
 
 # Introduction to Elm (Part 4)
 
->Before getting started with this part, be sure to `cd` into the directory `part4` in your project
+>Before getting started with this part, be sure to `cd` into the directory `part4` in your project and open the `Main.elm` file
 
 In part 4, we'll introduce Elm's "union type" and add to our `Msg` union type as well as installing some new packages
 and updating our imports section.

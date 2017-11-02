@@ -3,7 +3,7 @@ Back to [Part 1](../part1/README.md)
 
 # Introduction to Elm (Part 2)
 
->Before getting started with this part, be sure to `cd` into the directory `part2` in your project
+>Before getting started with this part, be sure to `cd` into the directory `part2` in your project and open the `Main.elm` file
 
 In this part, we'll start off with the basic frame of the app and look at each section.
 
@@ -16,7 +16,7 @@ The file starts off with the `module` definition:
 Here we're creating a module named `Main` that exposes all of it's functions.
 
 Next, we'll look at imports, here we're importing a couple of common libraries from the Elm language, 
-documentation for these libraries can be found here: [http://package.elm-lang.org/packages/elm-lang/html/latest]().
+documentation for these libraries can be found here: [http://package.elm-lang.org/packages/elm-lang/html/latest](http://package.elm-lang.org/packages/elm-lang/html/latest).
 
 ```elm
 import Html exposing (Html, div, h1, header, img, text)
@@ -151,7 +151,7 @@ style the output with CSS.
 There are also other tools that can accomplish similar things:
 
 - The Elm REPL can be used to test small pieces of code and can be started by typing `elm repl` into a terminal.
-- The Elm Live is a flexible dev server with features like live reload: [https://github.com/tomekwi/elm-live]()
+- The Elm Live is a flexible dev server with features like live reload: [https://github.com/tomekwi/elm-live](https://github.com/tomekwi/elm-live)
 
 
 >Elm Live is helpful when you need to run your code in an HTML file where you can include styles (CSS) and other resources.
