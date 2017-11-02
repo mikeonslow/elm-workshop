@@ -29,7 +29,8 @@
 
 #### Learning
 - Examples from the official site: http://elm-lang.org/examples 
-- The Official Guide: https://guide.elm-lang.org/ 
+- The Official Guide: https://guide.elm-lang.org/
+- A "Beginning Elm" tutorial: http://elmprogramming.com/
 - Elm in Action (Book): https://www.manning.com/books/elm-in-action
 
 #### In browser online editors
@@ -48,7 +49,7 @@
 
 Here we'll look at Elm's syntax vs JavaScript together by looking at the link below
 
-[http://elm-lang.org/docs/from-javascript]()
+[http://elm-lang.org/docs/from-javascript](http://elm-lang.org/docs/from-javascript)
 
 Next we'll look at some of Elm's code data structures:
 
@@ -60,7 +61,7 @@ Next we'll look at some of Elm's code data structures:
 - [Dict](http://package.elm-lang.org/packages/elm-lang/core/latest/Dict)
 
 ##### List
-A `List` is used to store an iterable list of values where every value in a list must have the same type. Lists are
+A `List` is used to store an ordered iterable collection of values where every value in a list must have the same type. Lists are
 the most commonly used iterable data structure in Elm but they do have some limitations. One of the main limitations is
 that Lists are not indexed (unlike `Array` in Elm or `Array` in JavaScript) so you cannot get/update an element 
 by index (`myArray[n]` in JavaScript). However, `List` implements many common functions like `filter`, `map` etc. 
@@ -76,8 +77,8 @@ b == Just 6
 ```
 
 One interesting note here is that `b ==Just 6` instead of `6`, the reason for this is that `Array.get` returns a `Maybe`
-type. `Maybe` is used in places where the result of a functional call may not succeed. In this case if we tried to call
-`Array.get 13 a`, we'd get back `Nothing` because index `13` does not exist. 
+type. `Maybe` is used in places where the value might not exist. Similar to nullable values in other languages. 
+In this case if we tried to call `Array.get 13 a`, we'd get back `Nothing` because index `13` does not exist. 
 
 We'll talk more about `Maybe` later but for now, just know that it is Elm's way of defining something that is _either_ 
 `Nothing` or `Just something` where `something` is the value.
@@ -95,7 +96,7 @@ We brought up a new term here `comparable`, this is a special type classificatio
 ##### Dict
 A dictionary mapping unique keys to values. The keys can be any `comparable` type such as `Int`, `Float`, `Time`, `Char`,
 `String`, and tuples or lists of `comparable` types. `Dict` is good for times when you need to store data that will need
-to be updated (or accessed by a unique key) frequently. In JavaScript a `Dict` would probably be used for times where you
+to be updated (or accessed by a unique key). In JavaScript a `Dict` would probably be used for times where you
 would use JSON similar to the following:
  
 ```
