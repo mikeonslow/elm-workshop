@@ -11,7 +11,9 @@ In this part, we'll start off with the basic frame of the app and look at each s
 
 The file starts off with the `module` definition:
 
-`module Main exposing (..)`
+```elm
+module Main exposing (..)
+```
 
 Here we're creating a module named `Main` that exposes all of it's functions.
 
