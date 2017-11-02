@@ -76,7 +76,7 @@ b = Array.get 3 a
 b == Just 6
 ```
 
-One interesting note here is that `b ==Just 6` instead of `6`, the reason for this is that `Array.get` returns a `Maybe`
+One interesting note here is that `b == Just 6` instead of `6`, the reason for this is that `Array.get` returns a `Maybe`
 type. `Maybe` is used in places where the value might not exist. Similar to nullable values in other languages. 
 In this case if we tried to call `Array.get 13 a`, we'd get back `Nothing` because index `13` does not exist. 
 
