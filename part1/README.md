@@ -84,7 +84,7 @@ We'll talk more about `Maybe` later but for now, just know that it is Elm's way 
 `Nothing` or `Just something` where `something` is the value.
 
 ##### Set
-Similar to a `List` but has some unique properties. A `Set` is a set of unique values. The values can be any `comparable`
+Similar to a `List` but has some unique properties. A `Set` is a collection of unique values. The values can be any `comparable`
 type. This includes `Int`, `Float`, `Time`, `Char`, `String`, and tuples or lists of comparable types. Sets are good for times
 when you need unique values. A note about `Set` is that when accessing items, they are referenced by value and not index.
 For instance, the documentation for `Set.remove` states: "Remove a value from a set. If the value is not found, no changes are made."
