@@ -1,0 +1,11 @@
+{
+  "name": "script",
+  "version": "1.0.0",
+  "description": "Script for running elm-package install --yes and elm-live",
+  "main": "index.js",
+  "scripts": {
+    "start": "elm package install --yes && elm-live Main.elm --output=static/js/elm.js --pushstate --open"
+  },
+  "author": "Mike Onslow",
+  "license": "ISC"
+}
