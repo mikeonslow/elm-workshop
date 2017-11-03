@@ -25,14 +25,14 @@ upon specific events (in our case, we'll be using `onClick` for both)
 
 Now that we've added these, we're free to handle our two `TODO` items in `Main.elm`
 
-First, let's update the `buttonOnClick` in the `let` expression for `viewCategoryButton`
+First, let's update the `buttonOnClick` in the `let` expression for `viewCategoryButton`. Make sure to preserve the necessary indentation!
 
 ```elm
-buttonOnClick =
-    if categorySelected then
-        []
-    else
-        [ onClick (CategoryClicked category.id) ]
+        buttonOnClick =
+            if categorySelected then
+                []
+            else
+                [ onClick (CategoryClicked category.id) ]
 ```
 
 Next, let's replace the current `viewItem` function with the following:
