@@ -7,9 +7,11 @@ Also, some of the setup verfication ideas were adapted from this repository: [El
 
 # Introduction to Elm (Workshop)
 
-Interested in Elm, but not sure where to begin? This is the workshop for you!
+Elm is a functional programming language for front-end web development. Elm has been gaining popularity as it aims to 
+solve many of the main pain points of the modern JavaScript developer.
 
-During this workshop, we will cover the basics of the Elm programming language. We assume prior knowledge only of JavaScript or another imperative or object-oriented language.
+In this workshop, participants will be introduced to the Elm programming language and will build a small Elm app from 
+the ground up. We assume prior knowledge only of JavaScript or another imperative or object-oriented language.
 
 At the end of this course, you will be able to:
 
@@ -17,11 +19,45 @@ At the end of this course, you will be able to:
 
 To achieve that goal, we will cover:
 
-- Basic functional syntax;
+#### Syntax
 
-- Elm data structures.
+Participants will learn about Elm's syntax and core data structures. We’ll also compare Elm’s syntax to JavaScript.
 
-- Basics of The Elm Architecture
+#### The Elm Architecture
+
+We’ll learn about Elm’s built in architecture and how it eliminates the need for a separate framework.
+
+#### Data Modelling
+
+Participants will learn about (and implement) Elm data structures to model our application.
+
+#### Working with back-end JSON APIs
+
+Here participants will add connectivity to their app by sending a request to the app’s API and processing the response. 
+We'll also learn about how JSON decoders and encoders are used to transform and process JSON data to and from concrete Elm
+data structures.
+
+#### Displaying Data
+ 
+In this section, participants will learn about how to create "View" code that displays their data on the screen.
+
+#### Handling User Interaction with Messages
+ 
+In this section, we'll finish creating our app by wiring up event handling for our app's user interaction. 
+
+#### Next Steps and Questions and Answers
+
+In the final section, we'll briefly cover some things that are important but are out of the scope of the initial workshop such as:
+
+- Interop with JavaScript
+- Elm's Compiler
+- Adding visual feedback for "loading", "success", "error" states etc.
+- Using libraries like elm-bootstrap to simplify the development process
+- Embedding an Elm app into an existing page/app
+- Techniques for scaling
+- Testing in Elm
+
+### Requirements
 
 For this class, you will need to bring and prepare:
 
