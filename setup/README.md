@@ -1,4 +1,6 @@
-# Setup 
+Back to [Main Page](/)
+
+# Introduction to Elm (Setup)
 
 Before the workshop, you'll want to make sure that your environment and project are setup. Follow the steps below to accomplish this. 
 
@@ -36,4 +38,7 @@ On your computer, complete the following steps:
     A browser should open, and you should see this in it:
 
     <img src="https://github.com/Elm-Detroit/elm-workshop/blob/master/static/images/verification-success.png" width="350" alt="Verification Image" />
+
+If all goes well, click on the link below to go to Part 1   
    
+Go to [Part 1](../part1/README.md)

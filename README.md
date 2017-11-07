@@ -29,7 +29,7 @@ We’ll learn about Elm’s built in architecture and how it eliminates the need
 
 #### Data Modelling
 
-Participants will learn about (and implement) Elm data structures to model our application.
+Participants will learn about (and implement) Elm data structures to model their application.
 
 #### Working with back-end JSON APIs
 
@@ -55,6 +55,7 @@ In the final section, we'll briefly cover some things that are important but are
 - Using libraries like elm-bootstrap to simplify the development process
 - Embedding an Elm app into an existing page/app
 - Techniques for scaling
+- Passing 
 - Testing in Elm
 
 ### Requirements
