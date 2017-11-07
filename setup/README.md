@@ -1,4 +1,4 @@
-Back to [Main Page](/)
+Back to [Main Page](../README.md)
 
 # Introduction to Elm (Setup)
 
