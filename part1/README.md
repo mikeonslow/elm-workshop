@@ -1,6 +1,6 @@
-# Introduction to Elm (Part 1)
-
 Back to [Setup](../setup/README.md)
+
+# Introduction to Elm (Part 1)
 
 ## What is Elm?
 
