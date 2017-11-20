@@ -55,7 +55,7 @@ In the final section, we'll briefly cover some things that are important but are
 - Using libraries like elm-bootstrap to simplify the development process
 - Embedding an Elm app into an existing page/app
 - Techniques for scaling
-- Passing 
+- Passing in flags upon app start up
 - Testing in Elm
 
 ### Requirements
