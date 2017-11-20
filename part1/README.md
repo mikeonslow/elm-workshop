@@ -4,14 +4,14 @@ Back to [Setup](../setup/README.md)
  
 ## What is Elm?
 
-- Functional language for the browser
-- Strongly and statically typed
-- Compiles to JavaScript
-- ML style language, written in Haskell
-- Declarative syntax
-
 ##### From the guide...
 > Elm is a functional language that compiles to JavaScript. It competes with projects like React as a tool for creating websites and web apps. Elm has a very strong emphasis on simplicity, ease-of-use, and quality tooling.
+
+- Functional language for the browser
+- Compiles to JavaScript
+- HTML, CSS, JavaScript interoperability
+- Strongly and statically typed
+- Declarative syntax
 
 ##### Some properties that have made Elm and solid choice for the front-end development  
 - A beginner friendly language with a minimal but powerful set of features
@@ -34,6 +34,8 @@ Back to [Setup](../setup/README.md)
 - The Official Guide: https://guide.elm-lang.org/
 - A "Beginning Elm" tutorial: http://elmprogramming.com/
 - Elm in Action (Book): https://www.manning.com/books/elm-in-action
+- Building Web Apps with Elm (course): https://pragmaticstudio.com/courses/elm
+- Short course on integrating Elm into an existing system: https://pragmaticstudio.com/courses/integrating-elm
 
 #### In browser online editors
 - Try Elm (for simple coding): http://elm-lang.org/try
@@ -44,8 +46,8 @@ Back to [Setup](../setup/README.md)
 - JS to Elm: https://itunes.apple.com/us/podcast/javascript-to-elm/id1272026213?mt=2
 
 #### Misc
+- Elm Cheatsheet: https://github.com/izdi/elm-cheat-sheet
 - Awesome Elm (collection of resources and libraries): https://github.com/isRuslan/awesome-elm
-
 
 ## Language Syntax
 
