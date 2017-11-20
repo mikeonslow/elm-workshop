@@ -157,7 +157,7 @@ There are also other tools that can accomplish similar things:
 
 
 >Elm Live is helpful when you need to run your code in an HTML file where you can include styles (CSS) and other resources.
->This is what we'll be using `elm-live` going forward with this workshop
+>This is what we'll be using `elm-live` going forward with this workshop.
 
 Let's stop the `elm reactor` by clicking `Ctrl+C` in the terminal in which you started it
 

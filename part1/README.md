@@ -1,7 +1,7 @@
 Back to [Setup](../setup/README.md)
 
 # Introduction to Elm (Part 1)
-
+ 
 ## What is Elm?
 
 - Functional language for the browser

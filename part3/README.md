@@ -137,8 +137,7 @@ view model =
     text (toString model)
 ```
 
-Now if we run `elm-live Main.elm --output=static/js/elm.js --pushstate --open` we should see the following instead of
-"Hello World!!!" in the upper left corner of our screen.
+Now if we run `npm start` we should see the following instead of "Hello World!!!" in the upper left corner of our screen.
 
 `{ portfolio = { categories = [], items = [] } }`
 

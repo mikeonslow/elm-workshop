@@ -29,16 +29,10 @@ On your computer, complete the following steps:
 3. Run `cd elm-workshop/setup`
 
 #### Verify Your Setup
-1. Run `elm package install --yes` (this either installs the packages specified in elm-package.json or creates elm-package.json with the core modules)
-
-2. Once that succeeds, run this to verify everything:
-   
-   `elm-live Main.elm --open --pushstate --output=static/js/elm.js`
-    
-    A browser should open, and you should see this in it:
+1. Run `npm start` and a browser should open. You should see the following page if everything went as planned:
 
     <img src="https://github.com/Elm-Detroit/elm-workshop/blob/master/static/images/verification-success.png" width="350" alt="Verification Image" />
 
-If all goes well, click on the link below to go to Part 1   
-   
+If all went well, click on the link below to go to Part 1
+
 Go to [Part 1](../part1/README.md)

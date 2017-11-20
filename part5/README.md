@@ -189,31 +189,25 @@ itemDecoder =
 
 We'll discuss decoders more in the next section, but for, now let's run:
 
-`elm-live Main.elm --output=static/js/elm.js --pushstate --open`
+`nom start`
 
 If things are working properly, we we'll see a massive wall of text with the data returned from the API
 
 This is where that little trick in `text (toString model)` in the `view` function becomes less valuable
 and the Elm debugger comes in handy.
 
-In the terminal where `elm-live` is running, let's hit `Ctrl+C` to step it from running and then, modify
-our command a bit:
-
-`elm-live Main.elm --output=static/js/elm.js --pushstate --open --debug`
-
-Adding the `--debug` flag here, recompiles the app with debug mode enabled. If this worked, you
-should see a small black UI at the bottom, right-hand side of your screen:
+In this part, we've added the `--debug` flag to the Elm compile (`npm start` is running this automatically), 
+which will compile the app with debug mode enabled. If this worked, you should see a small black UI at the bottom, 
+right-hand side of your screen:
 
 ![Elm Debugger](static/images/elm-debugger.png)
 
 You can click "Explore History" to view details about your app as it runs:
 
-
 ![Elm Debugger](static/images/elm-debugger-expanded.png)
 
-Here we can see that our `update` function ran once and routed to the message `ApiResponse Ok ...`
-and we can see that the `portfolio` field in our `Model` populated with lists of `Category` and `Item`
- successfully. 
+Here we can see that our `update` function ran once and routed to the message `ApiResponse Ok ...` and we can see that 
+the `portfolio` field in our `Model` populated with lists of `Category` and `Item` successfully. 
  
 >One shortcoming of the Elm debugger is that it does not show the entire `Msg` passed in. We believe
 this will be addressed in the next release of the debugger but are not certain.
