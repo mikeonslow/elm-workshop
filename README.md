@@ -4,6 +4,11 @@ Portions of this repository have been adapted from [Richard Feldman's Elm Worksh
 
 Also, some of the setup verfication ideas were adapted from this repository: [Elm Curriculum](https://github.com/mbuscemi/elm-curriculum)
 
+### Setup 
+
+Before the workshop, you'll want to make sure that your environment and project are setup. 
+
+Follow the steps at the following link to accomplish this: [Setup and Verification Page](setup/README.md) 
 
 # Introduction to Elm (Workshop)
 
