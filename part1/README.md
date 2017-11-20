@@ -28,6 +28,7 @@ Back to [Setup](../setup/README.md)
 #### Community
 - Slack: https://elmlang.herokuapp.com/ 
 - Reddit: https://www.reddit.com/r/elm/
+- Elm Detroit Meetup: https://www.meetup.com/elm-detroit/
 
 #### Learning
 - Examples from the official site: http://elm-lang.org/examples 
