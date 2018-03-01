@@ -26,7 +26,8 @@ Back to [Setup](../setup/README.md)
 ## Resources
 
 #### Community
-- Slack: https://elmlang.herokuapp.com/ 
+- Slack: https://elmlang.herokuapp.com/
+- Discourse: https://discourse.elm-lang.org/
 - Reddit: https://www.reddit.com/r/elm/
 - Elm Detroit Meetup: https://www.meetup.com/elm-detroit/
 
@@ -48,6 +49,7 @@ Back to [Setup](../setup/README.md)
 
 #### Misc
 - Elm Cheatsheet: https://github.com/izdi/elm-cheat-sheet
+- Elm News Aggregator: https://elm-news.com/
 - Awesome Elm (collection of resources and libraries): https://github.com/isRuslan/awesome-elm
 
 ## Language Syntax
