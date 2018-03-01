@@ -120,12 +120,8 @@ Let's update `initialModel` as follows:
 ```elm
 initialModel : Model
 initialModel =
-    { portfolio = Portfolio [] [] }
+    { portfolio = { categories = [], items = [] } }
 ```
-
->Notice we used `Portfolio [] []` here, this is a shortcut constructor which is the same as writing out:
-`{ categories = [], items = [] }`, additional note, when using this constructor, order matters, the values should
-be passed in the same order they are defined in the `type alias`.
 
 Lastly, let's get rid of our "Hello World!!!" in our `view` function and actually output the active `Model` to the
 screen.

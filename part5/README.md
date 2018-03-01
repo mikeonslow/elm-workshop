@@ -79,7 +79,7 @@ Change `initialModel` from
 ```elm
 initialModel : Model
 initialModel =
-    { portfolio = Portfolio [] [] }
+    { portfolio = { categories = [], items = [] } }
 ```
 
 to
@@ -104,8 +104,6 @@ Here's what we've done here:
   initialModel : String -> Model
   initialModel url =
   ```
-- Updated the `portfolio` field to use the longform record definition instead of the type constructor shortcut we implemented
-in part 3
 - We're setting `apiUrl` based on the `url` passed into `initialModel`
 
 Next, let's add a new section above the `main` function:
