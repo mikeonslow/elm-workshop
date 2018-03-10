@@ -14,7 +14,7 @@ the ground up. We assume prior knowledge only of JavaScript or another imperativ
 
 At the end of this course, you will be able to:
 
--  Build an working Elm web app
+-  Build an working Elm web app ([Live Demo](/demo)) of the app we'll be building)
 
 To achieve that goal, we will cover:
 
