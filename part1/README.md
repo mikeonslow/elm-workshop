@@ -1,15 +1,17 @@
+Back to [Setup](../setup/README.md)
+
 # Introduction to Elm (Part 1)
-
+ 
 ## What is Elm?
-
-- Functional language for the browser
-- Strongly and statically typed
-- Compiles to JavaScript
-- ML style language, written in Haskell
-- Declarative syntax
 
 ##### From the guide...
 > Elm is a functional language that compiles to JavaScript. It competes with projects like React as a tool for creating websites and web apps. Elm has a very strong emphasis on simplicity, ease-of-use, and quality tooling.
+
+- Functional language for the browser
+- Compiles to JavaScript
+- HTML, CSS, JavaScript interoperability
+- Strongly and statically typed
+- Declarative syntax
 
 ##### Some properties that have made Elm and solid choice for the front-end development  
 - A beginner friendly language with a minimal but powerful set of features
@@ -24,13 +26,18 @@
 ## Resources
 
 #### Community
-- Slack: https://elmlang.herokuapp.com/ 
+- Slack: https://elmlang.herokuapp.com/
+- Discourse: https://discourse.elm-lang.org/
 - Reddit: https://www.reddit.com/r/elm/
+- Elm Detroit Meetup: https://www.meetup.com/elm-detroit/
 
 #### Learning
 - Examples from the official site: http://elm-lang.org/examples 
-- The Official Guide: https://guide.elm-lang.org/ 
+- The Official Guide: https://guide.elm-lang.org/
+- A "Beginning Elm" tutorial: http://elmprogramming.com/
 - Elm in Action (Book): https://www.manning.com/books/elm-in-action
+- Building Web Apps with Elm (course): https://pragmaticstudio.com/courses/elm
+- Short course on integrating Elm into an existing system: https://pragmaticstudio.com/courses/integrating-elm
 
 #### In browser online editors
 - Try Elm (for simple coding): http://elm-lang.org/try
@@ -41,14 +48,15 @@
 - JS to Elm: https://itunes.apple.com/us/podcast/javascript-to-elm/id1272026213?mt=2
 
 #### Misc
+- Elm Cheatsheet: https://github.com/izdi/elm-cheat-sheet
+- Elm News Aggregator: https://elm-news.com/
 - Awesome Elm (collection of resources and libraries): https://github.com/isRuslan/awesome-elm
-
 
 ## Language Syntax
 
 Here we'll look at Elm's syntax vs JavaScript together by looking at the link below
 
-[http://elm-lang.org/docs/from-javascript]()
+[http://elm-lang.org/docs/from-javascript](http://elm-lang.org/docs/from-javascript)
 
 Next we'll look at some of Elm's code data structures:
 
@@ -60,7 +68,7 @@ Next we'll look at some of Elm's code data structures:
 - [Dict](http://package.elm-lang.org/packages/elm-lang/core/latest/Dict)
 
 ##### List
-A `List` is used to store an iterable list of values where every value in a list must have the same type. Lists are
+A `List` is used to store an ordered iterable collection of values where every value in a list must have the same type. Lists are
 the most commonly used iterable data structure in Elm but they do have some limitations. One of the main limitations is
 that Lists are not indexed (unlike `Array` in Elm or `Array` in JavaScript) so you cannot get/update an element 
 by index (`myArray[n]` in JavaScript). However, `List` implements many common functions like `filter`, `map` etc. 
@@ -75,15 +83,15 @@ b = Array.get 3 a
 b == Just 6
 ```
 
-One interesting note here is that `b ==Just 6` instead of `6`, the reason for this is that `Array.get` returns a `Maybe`
-type. `Maybe` is used in places where the result of a functional call may not succeed. In this case if we tried to call
-`Array.get 13 a`, we'd get back `Nothing` because index `13` does not exist. 
+One interesting note here is that `b == Just 6` instead of `6`, the reason for this is that `Array.get` returns a `Maybe`
+type. `Maybe` is used in places where the value might not exist. Similar to nullable values in other languages. 
+In this case if we tried to call `Array.get 13 a`, we'd get back `Nothing` because index `13` does not exist. 
 
 We'll talk more about `Maybe` later but for now, just know that it is Elm's way of defining something that is _either_ 
 `Nothing` or `Just something` where `something` is the value.
 
 ##### Set
-Similar to a `List` but has some unique properties. A `Set` is a set of unique values. The values can be any `comparable`
+Similar to a `List` but has some unique properties. A `Set` is a collection of unique values. The values can be any `comparable`
 type. This includes `Int`, `Float`, `Time`, `Char`, `String`, and tuples or lists of comparable types. Sets are good for times
 when you need unique values. A note about `Set` is that when accessing items, they are referenced by value and not index.
 For instance, the documentation for `Set.remove` states: "Remove a value from a set. If the value is not found, no changes are made."
@@ -95,7 +103,7 @@ We brought up a new term here `comparable`, this is a special type classificatio
 ##### Dict
 A dictionary mapping unique keys to values. The keys can be any `comparable` type such as `Int`, `Float`, `Time`, `Char`,
 `String`, and tuples or lists of `comparable` types. `Dict` is good for times when you need to store data that will need
-to be updated (or accessed by a unique key) frequently. In JavaScript a `Dict` would probably be used for times where you
+to be updated (or accessed by a unique key). In JavaScript a `Dict` would probably be used for times where you
 would use JSON similar to the following:
  
 ```

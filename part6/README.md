@@ -3,6 +3,8 @@ Back to [Part 5](../part5/README.md)
 
 # Introduction to Elm (Part 6)
 
+>Before getting started with this part, be sure to `cd` into the directory `part6` in your project and open the `Main.elm` file
+
 In this section, we'll explain JSON decoders and how they snap together like LEGOs to transform
 a string of JSON into concrete Elm types.
 
@@ -11,7 +13,7 @@ If we look at the decoders we have for this app, we find that they match up sema
 
 Types
 
-```
+```elm
 type alias Portfolio =
     { categories : List Category
     , items : List Item
@@ -36,7 +38,7 @@ type alias Item =
 
 JSON Decoders
 
-```
+```elm
 portfolioDecoder : Decoder Portfolio
 portfolioDecoder =
     decode Portfolio
@@ -85,7 +87,9 @@ You can read more about JSON decoders in package documentation:
 As a reminder, we can alias a module upon import by using the `as` keyword and we're currently giving the `Json.Decode.Pipeline`
 library a namespace of `Pipeline`
  
-`import Json.Decode.Pipeline as Pipeline exposing (decode, optional, required)`
+```elm
+import Json.Decode.Pipeline as Pipeline exposing (decode, optional, required)
+```
 
 Additionally, we're directly exposing three functions from the library so that we can use them without the namespace
 prefix `exposing (decode, optional, required)`
@@ -95,7 +99,9 @@ receive the field back from the API or the field _may_ be `null`. An optional fi
 an additional argument which is the default value that should be substitutes should the field not exist or have a value
 of `null`. 
 
-`|> optional "overlayColor" Decode.string "#f9f9f9""`
+```elm
+> optional "overlayColor" Decode.string "#f9f9f9"
+```
 
 >The default value for the `optional` field must share the same type as the decoder used to decode that field
 
@@ -114,7 +120,7 @@ We won't cover it much here but our Elm types can also be encoded should we need
 
 Let's say our API required a `userName` field to be passed with a `String` value. We could encode such a value as follows:
 
-```
+```elm
 import Json.Encode as Encode
 
 apiEncoder data =

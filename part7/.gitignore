@@ -1,6 +1,7 @@
 # elm-package generated files
 # elm-repl generated files
 repl-temp-*
+elm-stuff
 .idea
 elm.js
 .spelling

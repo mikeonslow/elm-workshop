@@ -3,6 +3,8 @@ Back to [Part 4](../part4/README.md)
 
 # Introduction to Elm (Part 5)
 
+>Before getting started with this part, be sure to `cd` into the directory `part5` in your project and open the `Main.elm` file
+
 In this part, we'll use the `Http` library to send a request to the API and create the code necessary to receive that
 message by modifying the `update` function to use a `case` expression to route our updates based on the `Msg` that was
 sent.
@@ -15,15 +17,15 @@ So now we know that we want to route messages that come back from the API to `Ap
 The first step is to change the `update` function so that it uses a `case` expression, here's a quick example of using
 `case` to handle a `Maybe`:
 
-```
+```elm
 case maybe of
   Just value -> value
-  Nothing -> [
+  Nothing -> []
 ```
 
 Let's modify our `update` function as follows:
 
-```
+```elm
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
@@ -37,7 +39,7 @@ update msg model =
 For now, both of our messages cause the same effect to happen (nothing!). Let's modify the `ApiResponse` case so that it
 receives the `response` from the API.
 
-```
+```elm
         ApiResponse response ->
             case response of
                 Ok response ->
@@ -61,7 +63,7 @@ we'll update the `errorMessage` field of the `Model` (we still need to add this)
 Next, let's add two new fields to our `Model`, the first is an `errorMessage` and the second is an `apiUrl` that 
 we'll use for our request:
 
-```
+```elm
 type alias Model =
     { errorMessage : String
     , portfolio : Portfolio
@@ -74,15 +76,15 @@ key updates here:
 
 Change `initialModel` from
 
-```
+```elm
 initialModel : Model
 initialModel =
-    { portfolio = Portfolio [] [] }
+    { portfolio = { categories = [], items = [] } }
 ```
 
 to
 
-```
+```elm
 initialModel : String -> Model
 initialModel url =
     { errorMessage = ""
@@ -98,17 +100,15 @@ Here's what we've done here:
 
 - Changed the function signature and definition for `initialModel` to except a `String` (`url`) as it's single argument:
 
-  ```
+  ```elm
   initialModel : String -> Model
   initialModel url =
   ```
-- Updated the `portfolio` field to use the longform record definition instead of the type constructor shortcut we implemented
-in part 3
 - We're setting `apiUrl` based on the `url` passed into `initialModel`
 
 Next, let's add a new section above the `main` function:
 
-```
+```elm
 -- Http
 
 
@@ -124,7 +124,7 @@ We'll use this in the `init` function to schedule the command to call out to the
 Let's do this now as well as passing in the API URL to `initialModel` and scheduling our
 command to call out to the API:
 
-```
+```elm
 init : String -> ( Model, Cmd Msg )
 init url =
     ( initialModel url, getPortfolio url )
@@ -132,7 +132,7 @@ init url =
 
 We also need to update the call to `init = init` in the `main` function:
 
-```
+```elm
 main : Program Never Model Msg
 main =
     Html.program
@@ -146,7 +146,7 @@ main =
 Once `init` is updated, we need to add decoders to our file to translate the JSON object returned by
 the API into our `Portfolio` type which holds are `List Category` and `List Item`.
 
-```
+```elm
 -- JSON Decoding
 
 
@@ -187,31 +187,25 @@ itemDecoder =
 
 We'll discuss decoders more in the next section, but for, now let's run:
 
-`elm-live Main.elm --output=static/js/elm.js --pushstate --open`
+`nom start`
 
 If things are working properly, we we'll see a massive wall of text with the data returned from the API
 
 This is where that little trick in `text (toString model)` in the `view` function becomes less valuable
 and the Elm debugger comes in handy.
 
-In the terminal where `elm-live` is running, let's hit `Ctrl+C` to step it from running and then, modify
-our command a bit:
-
-`elm-live Main.elm --output=static/js/elm.js --pushstate --open --debug`
-
-Adding the `--debug` flag here, recompiles the app with debug mode enabled. If this worked, you
-should see a small black UI at the bottom, right-hand side of your screen:
+In this part, we've added the `--debug` flag to the Elm compile (`npm start` is running this automatically), 
+which will compile the app with debug mode enabled. If this worked, you should see a small black UI at the bottom, 
+right-hand side of your screen:
 
 ![Elm Debugger](static/images/elm-debugger.png)
 
 You can click "Explore History" to view details about your app as it runs:
 
-
 ![Elm Debugger](static/images/elm-debugger-expanded.png)
 
-Here we can see that our `update` function ran once and routed to the message `ApiResponse Ok ...`
-and we can see that the `portfolio` field in our `Model` populated with lists of `Category` and `Item`
- successfully. 
+Here we can see that our `update` function ran once and routed to the message `ApiResponse Ok ...` and we can see that 
+the `portfolio` field in our `Model` populated with lists of `Category` and `Item` successfully. 
  
 >One shortcoming of the Elm debugger is that it does not show the entire `Msg` passed in. We believe
 this will be addressed in the next release of the debugger but are not certain.

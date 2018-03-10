@@ -3,6 +3,8 @@ Back to [Part 3](../part3/README.md)
 
 # Introduction to Elm (Part 4)
 
+>Before getting started with this part, be sure to `cd` into the directory `part4` in your project and open the `Main.elm` file
+
 In part 4, we'll introduce Elm's "union type" and add to our `Msg` union type as well as installing some new packages
 and updating our imports section.
 
@@ -15,7 +17,7 @@ In this application we'll mostly use union types to model the messages that are 
 our `update` function but this is just one of may uses for union types. Some examples of union types in
 action are Elm's `Maybe` type:
 
-```
+```elm
 type Maybe a
     = Just a
     | Nothing
@@ -28,14 +30,14 @@ index)
 
 Elm's built in type `Bool` (used to store boolean `true | false` values) is also a union type
 
-```
+```elm
 type Bool = True | False
 ```
 
 Let's move on to using union types ourselves. Currently our `Msg` type is a union type with one possible
 state `None`
 
-```
+```elm
 type Msg
     = None
 ```
@@ -47,7 +49,7 @@ our requirements for the app. First and foremost, we need to fetch data from the
 Let's update the `type Msg` to have another message called `ApiResponse`, this message will also need some data associated
 with the API response so that we know if the request succeeded or failed. Update the `Msg` definition as follows:
 
-```
+```elm
 type Msg
     = ApiResponse (Result Http.Error Portfolio)
     | None
@@ -58,7 +60,7 @@ route the response (regardless of whether or not it succeeds) to our new message
 returns a `Result` with this data, we need to handle type. Parenthesis are needed here because `Result` is actually
 a union type itself:
 
-```
+```elm
 type Result error value
     = Ok value
     | Err error
@@ -83,7 +85,7 @@ Well we're at it, let's set ourselves up for the next step by also running:
 Once you've run these commands, open your `part4/elm-package.json` file and in the `dependencies` section, it
 should look something like the following: 
 
-```
+```json
 "dependencies": {
     "NoRedInk/elm-decode-pipeline": "3.0.0 <= v < 4.0.0",
     "elm-lang/core": "5.1.1 <= v < 6.0.0",
@@ -101,14 +103,14 @@ existing imports:
 
 Replace
 
-```
+```elm
 import Html exposing (Html, div, h1, header, img, text)
 import Html.Attributes exposing (class, src, width)
 ```
 
 with
 
-```
+```elm
 import Html exposing (..)
 import Html.Attributes exposing (attribute, class, classList, href, src, target, type_, width)
 import Html.Events exposing (onClick)

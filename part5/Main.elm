@@ -15,7 +15,7 @@ The `initialModel` function initializes our Model. This function is called in `i
 
 initialModel : Model
 initialModel =
-    { portfolio = Portfolio [] [] }
+    { portfolio = { categories = [], items = [] } }
 
 
 type alias Model =

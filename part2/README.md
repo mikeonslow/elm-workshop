@@ -3,20 +3,24 @@ Back to [Part 1](../part1/README.md)
 
 # Introduction to Elm (Part 2)
 
+>Before getting started with this part, be sure to `cd` into the directory `part2` in your project and open the `Main.elm` file
+
 In this part, we'll start off with the basic frame of the app and look at each section.
 
 #### Module and Imports
 
 The file starts off with the `module` definition:
 
-`module Main exposing (..)`
+```elm
+module Main exposing (..)
+```
 
 Here we're creating a module named `Main` that exposes all of it's functions.
 
 Next, we'll look at imports, here we're importing a couple of common libraries from the Elm language, 
-documentation for these libraries can be found here: [http://package.elm-lang.org/packages/elm-lang/html/latest]().
+documentation for these libraries can be found here: [http://package.elm-lang.org/packages/elm-lang/html/latest](http://package.elm-lang.org/packages/elm-lang/html/latest).
 
-```
+```elm
 import Html exposing (Html, div, h1, header, img, text)
 import Html.Attributes exposing (class, src, width)
 ```
@@ -28,18 +32,18 @@ functions by using their full namespace (ex: `Html.span`).
 
 The `initialModel` function initializes our Model. This function is called in `init` and outputs a `Model`.
 
-```
+```elm
 initialModel : Model
 initialModel =
-{}
+    {}
 ```
 
 The type for our `Model` is pretty bare currently but that will change as we build our app. The important thing to know
 is that this is the structure that will hold __all__ of our applications state.
 
-```
+```elm
 type alias Model =
-{}
+    {}
 ```
 
 
@@ -51,7 +55,7 @@ of `Model` into an `Html` element would produce messages tagged with `Msg`.
 
 We will see this when we introduce some interaction.
 
-```
+```elm
 view : Model -> Html Msg
 view model =
     text "Hello, World!!!"
@@ -62,7 +66,7 @@ view model =
 The `update` function will be called by `Html.program` each time a message is received.
 This update function responds to messages (`Msg`), updating the model and returning commands (`Cmd`) as needed.
 
-```
+```elm
 type Msg
     = None
 
@@ -90,7 +94,7 @@ In Elm, using subscriptions is how your application can listen for external inpu
 
 In this application, we don't have a need for any active subscriptions so we add in `Sub.none`
 
-```
+```elm
 subscriptions =
 \_ -> Sub.none
 ```
@@ -100,7 +104,7 @@ subscriptions =
 
 The `main` function is the entry point for our app which means it's the first thing that is run
 
-```
+```elm
 main : Program Never Model Msg
 main =
     Html.program
@@ -115,7 +119,7 @@ The `init` function is run by `main` upon application startup and allows us to s
 our app's initial state as well as scheduling any commands we'd like to run after the app starts
 up. For now, we don't need to run any commands so we'll use `Cmd.none` here.
 
-```
+```elm
 init =
     ( initialModel, Cmd.none )
 ```
@@ -149,11 +153,11 @@ style the output with CSS.
 There are also other tools that can accomplish similar things:
 
 - The Elm REPL can be used to test small pieces of code and can be started by typing `elm repl` into a terminal.
-- The Elm Live is a flexible dev server with features like live reload: [https://github.com/tomekwi/elm-live]()
+- The Elm Live is a flexible dev server with features like live reload: [https://github.com/tomekwi/elm-live](https://github.com/tomekwi/elm-live)
 
 
 >Elm Live is helpful when you need to run your code in an HTML file where you can include styles (CSS) and other resources.
->This is what we'll be using `elm-live` going forward with this workshop
+>This is what we'll be using `elm-live` going forward with this workshop.
 
 Let's stop the `elm reactor` by clicking `Ctrl+C` in the terminal in which you started it
 

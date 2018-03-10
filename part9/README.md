@@ -3,6 +3,8 @@ Back to [Part 8](../part8/README.md)
 
 # Introduction to Elm (Part 9)
 
+>Before getting started with this part, be sure to `cd` into the directory `part9` in your project and open the `Main.elm` file
+
 ### Ways to improve our App
 
 We've built a working Elm app, excellent! Due to the time limitation on this workshop, we had to skip a
@@ -32,7 +34,7 @@ Lastly, a basic example of using this pattern was created in Ellie: [https://ell
 We need to update our `main` function to using `Html.programWithFlags` instead of `Html.program`, we can
 replace our `main` function with the following code to accomplish this:
 
-```
+```elm
 main : Program String Model Msg
 main =
     Html.programWithFlags
