@@ -15,7 +15,7 @@ at a time.
 
 There is no requirement to update items so we can use a standard JSON API with the `GET` verb. 
 
-An existing API has been created and is ready for us to use: [http://www.mocky.io/v2/59f8cfa92d0000891dad41ed](http://www.mocky.io/v2/59f8cfa92d0000891dad41ed)
+An existing API has been created and is ready for us to use: [https://www.mocky.io/v2/59f8cfa92d0000891dad41ed](https://www.mocky.io/v2/59f8cfa92d0000891dad41ed)
 , let's check this out now.
 
 Okay, so we now know that the `categories` field contains a list `[...]` of objects `{...}` with an `id` and a `label`. 

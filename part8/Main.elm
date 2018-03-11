@@ -337,7 +337,7 @@ main =
     Html.program
         { view = view
         , update = update
-        , init = init "http://www.mocky.io/v2/59f8cfa92d0000891dad41ed"
+        , init = init "https://www.mocky.io/v2/59f8cfa92d0000891dad41ed"
         , subscriptions = subscriptions
         }
 

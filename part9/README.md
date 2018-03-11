@@ -56,7 +56,7 @@ We'll replace our `<body>...</body>` with the following:
 <body>
 <div id="elmfolio"></div>
 <script type="text/javascript">
-    var elmApp = Elm.Main.embed(document.getElementById('elmfolio'), "http://www.mocky.io/v2/59f8cfa92d0000891dad41ed");
+    var elmApp = Elm.Main.embed(document.getElementById('elmfolio'), "https://www.mocky.io/v2/59f8cfa92d0000891dad41ed");
 </script>
 </body>
 ```
