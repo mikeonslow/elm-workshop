@@ -1,11 +1,12 @@
-module Main exposing (..)
+module Main exposing (Category, Item, Model, Msg(..), Portfolio, categoryDecoder, getPortfolio, getSelectedCategoryId, getSelectedItem, init, initialModel, itemDecoder, main, portfolioDecoder, subscriptions, update, view, viewCategoryButton, viewCategoryNavbar, viewError, viewItem, viewItems, viewSelectedItem)
 
+import Browser
 import Html exposing (..)
 import Html.Attributes exposing (attribute, class, classList, href, src, target, type_, width)
 import Html.Events exposing (onClick)
 import Http
 import Json.Decode as Decode exposing (Decoder, Value)
-import Json.Decode.Pipeline as Pipeline exposing (decode, optional, required)
+import Json.Decode.Pipeline as Pipeline exposing (optional, required)
 
 
 {--Model
@@ -217,17 +218,17 @@ update msg model =
     case msg of
         ApiResponse response ->
             case response of
-                Ok response ->
+                Ok portfolio ->
                     let
                         updatedModel =
-                            { model | portfolio = response }
+                            { model | portfolio = portfolio }
                     in
                     ( updatedModel, Cmd.none )
 
                 Err error ->
                     let
                         errorMessage =
-                            "An error occurred: " ++ toString error
+                            "An error occurred: " ++ "toString error"
                     in
                     ( { model | errorMessage = errorMessage }, Cmd.none )
 
@@ -269,21 +270,21 @@ getPortfolio url =
 
 portfolioDecoder : Decoder Portfolio
 portfolioDecoder =
-    decode Portfolio
+    Decode.succeed Portfolio
         |> required "categories" (Decode.list categoryDecoder)
         |> required "items" (Decode.list itemDecoder)
 
 
 categoryDecoder : Decoder Category
 categoryDecoder =
-    decode Category
+    Decode.succeed Category
         |> required "id" Decode.int
         |> required "label" Decode.string
 
 
 itemDecoder : Decoder Item
 itemDecoder =
-    decode Item
+    Decode.succeed Item
         |> required "id" Decode.int
         |> required "title" Decode.string
         |> required "categoryId" Decode.int
@@ -291,15 +292,6 @@ itemDecoder =
         |> required "linkUrl" Decode.string
         |> required "description" Decode.string
         |> required "overlayColor" Decode.string
-
-
-
--- Helpers
-
-
-(=>) : a -> b -> ( a, b )
-(=>) =
-    (,)
 
 
 getSelectedCategoryId : Model -> Int
@@ -355,14 +347,14 @@ subscriptions =
 {--
 The `main` function is the entry point for our app which means it's the first thing that is run
 --}
+--main : Program Never Model Msg
 
 
-main : Program Never Model Msg
 main =
-    Html.program
-        { view = view
+    Browser.element
+        { init = init
+        , view = view
         , update = update
-        , init = init "https://www.mocky.io/v2/59f8cfa92d0000891dad41ed"
         , subscriptions = subscriptions
         }
 
@@ -372,8 +364,11 @@ main =
 our app's initial state as well as scheduling any commands we'd like to run after the app starts
 up. For now, we don't need to run any commands so we'll use Cmd.none here.
 --}
+--init : String -> ( Model, Cmd Msg )
+
+init : () -> (Model, Cmd Msg)
+init _ =
+    ( initialModel apiUrl, getPortfolio apiUrl )
 
 
-init : String -> ( Model, Cmd Msg )
-init url =
-    ( initialModel url, getPortfolio url )
+apiUrl = "https://www.mocky.io/v2/59f8cfa92d0000891dad41ed"
