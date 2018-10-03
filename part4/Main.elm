@@ -6,7 +6,7 @@ import Html.Attributes exposing (attribute, class, classList, href, src, target,
 import Html.Events exposing (onClick)
 import Http
 import Json.Decode as Decode exposing (Decoder, Value)
-import Json.Decode.Pipeline as Pipeline exposing (decode, optional, required)
+import Json.Decode.Pipeline as Pipeline exposing (optional, required)
 
 
 
