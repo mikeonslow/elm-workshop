@@ -12,13 +12,13 @@ In this part, we'll start off with the basic frame of the app and look at each s
 The file starts off with the `module` definition:
 
 ```elm
-module Main exposing (..)
+module Main exposing (Model, Msg(..), init, initialModel, main, subscriptions, update, view)
 ```
 
 Here we're creating a module named `Main` that exposes all of it's functions.
 
 Next, we'll look at imports, here we're importing a couple of common libraries from the Elm language, 
-documentation for these libraries can be found here: [http://package.elm-lang.org/packages/elm-lang/html/latest](http://package.elm-lang.org/packages/elm-lang/html/latest).
+documentation for these libraries can be found here: [https://package.elm-lang.org/packages/elm/html/latest](https://package.elm-lang.org/packages/elm/html/latest).
 
 ```elm
 import Html exposing (Html, div, h1, header, img, text)
