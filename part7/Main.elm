@@ -1,12 +1,12 @@
 module Main exposing (Category, Item, Model, Msg(..), Portfolio, categoryDecoder, getPortfolio, getSelectedCategoryId, getSelectedItem, init, initialModel, itemDecoder, main, portfolioDecoder, subscriptions, update, view, viewCategoryButton, viewCategoryNavbar, viewError, viewItem, viewItems, viewSelectedItem)
 
+import Browser
 import Html exposing (..)
 import Html.Attributes exposing (attribute, class, classList, href, src, target, type_, width)
 import Html.Events exposing (onClick)
 import Http
 import Json.Decode as Decode exposing (Decoder, Value)
-import Json.Decode.Pipeline as Pipeline exposing (decode, optional, required)
-
+import Json.Decode.Pipeline as Pipeline exposing (optional, required)
 
 
 {--Model
@@ -65,7 +65,7 @@ We will see this when we introduce some interaction.
 
 view : Model -> Html Msg
 view model =
-    text (toString model)
+    text "Let's get some data showing!!!"
 
 
 viewCategoryNavbar : Portfolio -> Int -> Html Msg
@@ -92,7 +92,6 @@ viewCategoryButton selectedCategoryId category =
             -- TODO add click handler in `else` here "onClick (CategoryClicked category.id)"
             if categorySelected then
                 []
-
             else
                 []
 
@@ -119,7 +118,6 @@ viewItems { portfolio, errorMessage } selectedCategoryId selectedItemId =
             if String.isEmpty errorMessage then
                 div [ class "row items-container" ]
                     filteredItems
-
             else
                 viewError errorMessage
     in
@@ -184,19 +182,19 @@ update msg model =
     case msg of
         ApiResponse response ->
             case response of
-                Ok response ->
+                Ok portfolio ->
                     let
                         updatedModel =
-                            { model | portfolio = response }
+                            { model | portfolio = portfolio }
                     in
                     ( updatedModel, Cmd.none )
 
                 Err error ->
                     let
-                        errorMessage =
-                            "An error occurred: " ++ toString error
+                        updatedModel =
+                            { model | errorMessage = "An error occurred while attempted to fetch your portfolio" }
                     in
-                    ( { model | errorMessage = errorMessage }, Cmd.none )
+                    ( updatedModel, Cmd.none )
 
         None ->
             ( model, Cmd.none )
@@ -217,21 +215,21 @@ getPortfolio url =
 
 portfolioDecoder : Decoder Portfolio
 portfolioDecoder =
-    decode Portfolio
+    Decode.succeed Portfolio
         |> required "categories" (Decode.list categoryDecoder)
         |> required "items" (Decode.list itemDecoder)
 
 
 categoryDecoder : Decoder Category
 categoryDecoder =
-    decode Category
+    Decode.succeed Category
         |> required "id" Decode.int
         |> required "label" Decode.string
 
 
 itemDecoder : Decoder Item
 itemDecoder =
-    decode Item
+    Decode.succeed Item
         |> required "id" Decode.int
         |> required "title" Decode.string
         |> required "categoryId" Decode.int
@@ -243,11 +241,6 @@ itemDecoder =
 
 
 -- Helpers
-
-
-(=>) : a -> b -> ( a, b )
-(=>) =
-    (,)
 
 
 getSelectedCategoryId : Model -> Int
@@ -305,12 +298,11 @@ The `main` function is the entry point for our app which means it's the first th
 --}
 
 
-main : Program Never Model Msg
 main =
-    Html.program
-        { view = view
+    Browser.element
+        { init = init
+        , view = view
         , update = update
-        , init = init "https://www.mocky.io/v2/59f8cfa92d0000891dad41ed"
         , subscriptions = subscriptions
         }
 
@@ -322,6 +314,6 @@ up. For now, we don't need to run any commands so we'll use Cmd.none here.
 --}
 
 
-init : String -> ( Model, Cmd Msg )
-init url =
-    ( initialModel url, getPortfolio url )
+init : { apiUrl : String } -> ( Model, Cmd Msg )
+init flags =
+    ( initialModel flags.apiUrl, getPortfolio flags.apiUrl )
