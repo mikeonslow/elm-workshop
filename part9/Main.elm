@@ -61,7 +61,7 @@ type alias Item =
 {--View
 The function `view` renders an Html element using our application model.
 Note that the type signature is Model -> Html Msg. This means that this function transforms an argument
-of Model into an Html element would produce messages tagged with Msg.
+of `Model` into an `Html` element that, in turn produces messages tagged with `Msg`.
 
 We will see this when we introduce some interaction.
 --}
@@ -201,8 +201,8 @@ viewError error =
 
 
 {--Update--
-The `update` function will be called by Html.program each time a message is received.
-This update function responds to messages (Msg), updating the model and returning commands as needed.
+The `update` function will be called by `Browser.element` each time a message (`Msg`) is received.
+This update function responds to messages (`Msg`), updating the model and returning commands as needed.
 --}
 
 
@@ -227,10 +227,10 @@ update msg model =
 
                 Err error ->
                     let
-                        errorMessage =
-                            "An error occurred: " ++ "toString error"
+                        updatedModel=
+                            { model | errorMessage = "An error occurred while attempted to fetch your portfolio" }
                     in
-                    ( { model | errorMessage = errorMessage }, Cmd.none )
+                    ( updatedModel, Cmd.none )
 
         CategoryClicked categoryId ->
             let
