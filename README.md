@@ -6,14 +6,11 @@ Also, some of the setup verfication ideas were adapted from this repository: [El
 
 # Introduction to Elm (Workshop)
 
-Elm is a functional programming language for front-end web development. Elm has been gaining popularity as it aims to 
-solve many of the main pain points of the modern JavaScript developer.
+Elm is a functional programming language for front-end web development. Elm has been gaining popularity as it aims to solve many of the main pain points of the modern JavaScript developer.
 
-In this workshop, participants will be introduced to the Elm programming language and will build a small Elm app from 
-the ground up. We assume prior knowledge only of JavaScript or another imperative or object-oriented language.
+In this workshop, participants will be introduced to the Elm programming language and will build a small Elm app from the ground up. We assume prior knowledge only of JavaScript or another imperative or object-oriented language.
 
 At the end of this course, you will be able to:
-
 -  Build an working Elm web app ([Live Demo](https://mikeonslow.github.io/elm-workshop/demo/)) of the app we'll be building)
 
 To achieve that goal, we will cover:
@@ -32,9 +29,9 @@ Participants will learn about (and implement) Elm data structures to model their
 
 #### Working with back-end JSON APIs
 
-Here participants will add connectivity to their app by sending a request to the app’s API and processing the response. 
-We'll also learn about how JSON decoders and encoders are used to transform and process JSON data to and from concrete Elm
-data structures.
+Here participants will add connectivity to their app by sending a request to the app’s API and processing the response.
+
+We'll also learn about how JSON decoders and encoders are used to transform and process JSON data to and from concrete Elm data structures.
 
 #### Displaying Data
  
