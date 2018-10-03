@@ -139,8 +139,7 @@ Once you run the command in your terminal of choice, you should see output like 
 
 ```
 >elm reactor
-elm-reactor 0.18.0
-Listening on http://localhost:8000
+Go to <http://localhost:8000> to see your project dashboard.
 ```
 
 Now you can navigate your web browser to `http://localhost:8000` and you should see a UI that shows a list of the files for 
@@ -153,7 +152,7 @@ style the output with CSS.
 There are also other tools that can accomplish similar things:
 
 - The Elm REPL can be used to test small pieces of code and can be started by typing `elm repl` into a terminal.
-- The Elm Live is a flexible dev server with features like live reload: [https://github.com/tomekwi/elm-live](https://github.com/tomekwi/elm-live)
+- The Elm Live is a flexible dev server with features like live reload: [https://github.com/wking-io/elm-live](https://github.com/wking-io/elm-live)
 
 
 >Elm Live is helpful when you need to run your code in an HTML file where you can include styles (CSS) and other resources.
@@ -161,17 +160,15 @@ There are also other tools that can accomplish similar things:
 
 Let's stop the `elm reactor` by clicking `Ctrl+C` in the terminal in which you started it
 
-Now let's rerun the app using `elm live` by running the following commands in a terminal:
+Running `npm start` in this project will automatically install the necessary packages as well as use `elm-live` to start the app and keep it updated as we make changes in our `Main.elm` file.
 
-`elm-live Main.elm --output=static/js/elm.js --pushstate --open`
-
-Once we run this command, we should see a browser window open with the app running and "Hello, World!!!" displayed in
+Once we run this command, and point our browser to: http://localhost:8000, we should see a the app running and "Hello, World!!!" displayed in
 the upper left corner just like when we used the reactor. 
 
 Now, we'll show off one of the nicest features of `elm-live`, in the `Main.elm` file, change the string "Hello World!!!"
 to "Hello `your name`!!!" and save the file!
 
-One you do this, `elm-live` should automatically update the app in your browser window to say "Hello `your name`!!!"
+Once you do this, `elm-live` should automatically update the app in your browser window to say "Hello `your name`!!!"
 
 #### Recap
 

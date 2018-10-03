@@ -4,3 +4,5 @@ repl-temp-*
 elm-stuff
 .idea
 .spelling
+node_modules
+elm.js
