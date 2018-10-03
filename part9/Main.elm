@@ -9,6 +9,7 @@ import Json.Decode as Decode exposing (Decoder, Value)
 import Json.Decode.Pipeline as Pipeline exposing (optional, required)
 
 
+
 {--Model
 The `initialModel` function initializes our Model. This function is called in `init` and outputs a Model
 --}
@@ -121,6 +122,7 @@ viewCategoryButton selectedCategoryId category =
         buttonOnClick =
             if categorySelected then
                 []
+
             else
                 [ onClick (CategoryClicked category.id) ]
 
@@ -147,6 +149,7 @@ viewItems { portfolio, errorMessage } selectedCategoryId selectedItemId =
             if String.isEmpty errorMessage then
                 div [ class "row items-container" ]
                     filteredItems
+
             else
                 viewError errorMessage
     in
@@ -227,7 +230,7 @@ update msg model =
 
                 Err error ->
                     let
-                        updatedModel=
+                        updatedModel =
                             { model | errorMessage = "An error occurred while attempted to fetch your portfolio" }
                     in
                     ( updatedModel, Cmd.none )
@@ -366,9 +369,11 @@ up. For now, we don't need to run any commands so we'll use Cmd.none here.
 --}
 --init : String -> ( Model, Cmd Msg )
 
-init : () -> (Model, Cmd Msg)
+
+init : () -> ( Model, Cmd Msg )
 init _ =
     ( initialModel apiUrl, getPortfolio apiUrl )
 
 
-apiUrl = "https://www.mocky.io/v2/59f8cfa92d0000891dad41ed"
+apiUrl =
+    "https://www.mocky.io/v2/59f8cfa92d0000891dad41ed"

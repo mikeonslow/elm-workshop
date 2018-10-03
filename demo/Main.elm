@@ -1,4 +1,4 @@
-module Main exposing (..)
+module Main exposing (Category, Item, Model, Msg(..), Portfolio, categoryDecoder, getPortfolio, getSelectedCategoryId, getSelectedItem, init, initialModel, itemDecoder, main, portfolioDecoder, subscriptions, update, view, viewCategoryButton, viewCategoryNavbar, viewError, viewItem, viewItems, viewSelectedItem)
 
 import Html exposing (..)
 import Html.Attributes exposing (attribute, class, classList, href, src, target, type_, width)
@@ -6,6 +6,7 @@ import Html.Events exposing (onClick)
 import Http
 import Json.Decode as Decode exposing (Decoder, Value)
 import Json.Decode.Pipeline as Pipeline exposing (decode, optional, required)
+
 
 
 {--Model
@@ -120,6 +121,7 @@ viewCategoryButton selectedCategoryId category =
         buttonOnClick =
             if categorySelected then
                 []
+
             else
                 [ onClick (CategoryClicked category.id) ]
 
@@ -146,6 +148,7 @@ viewItems { portfolio, errorMessage } selectedCategoryId selectedItemId =
             if String.isEmpty errorMessage then
                 div [ class "row items-container" ]
                     filteredItems
+
             else
                 viewError errorMessage
     in

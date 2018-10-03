@@ -1,4 +1,4 @@
-module Main exposing (..)
+module Main exposing (Model, Msg(..), initialModel, main, update, view)
 
 {-| THIS FILE IS NOT PART OF THE COURSE! It is only to verify that you
 have everything set up properly.

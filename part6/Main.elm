@@ -1,4 +1,4 @@
-module Main exposing (..)
+module Main exposing (Category, Item, Model, Msg(..), Portfolio, categoryDecoder, getPortfolio, init, initialModel, itemDecoder, main, portfolioDecoder, subscriptions, update, view)
 
 import Html exposing (..)
 import Html.Attributes exposing (attribute, class, classList, href, src, target, type_, width)
@@ -6,6 +6,7 @@ import Html.Events exposing (onClick)
 import Http
 import Json.Decode as Decode exposing (Decoder, Value)
 import Json.Decode.Pipeline as Pipeline exposing (decode, optional, required)
+
 
 
 {--Model

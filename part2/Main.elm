@@ -90,6 +90,6 @@ up. For now, we don't need to run any commands so we'll use Cmd.none here.
 --}
 
 
-init : () -> (Model, Cmd Msg)
+init : () -> ( Model, Cmd Msg )
 init _ =
     ( initialModel, Cmd.none )
