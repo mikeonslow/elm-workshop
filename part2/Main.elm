@@ -5,7 +5,6 @@ import Html exposing (Html, div, h1, header, img, text)
 import Html.Attributes exposing (class, src, width)
 
 
-
 {--Model
 The `initialModel` function initializes our `Model`. This function is called in `init` and outputs a `Model`
 --}

@@ -9,7 +9,6 @@ import Json.Decode as Decode exposing (Decoder, Value)
 import Json.Decode.Pipeline as Pipeline exposing (optional, required)
 
 
-
 {--Model
 The `initialModel` function initializes our Model. This function is called in `init` and outputs a Model
 --}
