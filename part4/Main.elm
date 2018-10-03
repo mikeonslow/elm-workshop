@@ -1,7 +1,9 @@
-module Main exposing (..)
+module Main exposing (Category, Item, Model, Msg(..), Portfolio, init, initialModel, main, subscriptions, update, view)
 
+import Browser
 import Html exposing (Html, div, h1, header, img, text)
 import Html.Attributes exposing (class, src, width)
+
 
 
 {--Model
@@ -51,13 +53,12 @@ We will see this when we introduce some interaction.
 
 view : Model -> Html Msg
 view model =
-    text (toString model)
-
+    text "Hello, World!!!"
 
 
 {--Update--
-The `update` function will be called by Html.program each time a message is received.
-This update function responds to messages (Msg), updating the model and returning commands as needed.
+The `update` function will be called by Html.program each time a message (`Msg`) is received.
+This update function responds to messages (`Msg`), updating the model and returning commands as needed.
 --}
 
 
@@ -93,12 +94,11 @@ The `main` function is the entry point for our app which means it's the first th
 --}
 
 
-main : Program Never Model Msg
 main =
-    Html.program
-        { view = view
+    Browser.element
+        { init = init
+        , view = view
         , update = update
-        , init = init
         , subscriptions = subscriptions
         }
 
@@ -110,5 +110,6 @@ up. For now, we don't need to run any commands so we'll use Cmd.none here.
 --}
 
 
-init =
+init : () -> ( Model, Cmd Msg )
+init _ =
     ( initialModel, Cmd.none )
