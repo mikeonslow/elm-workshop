@@ -1,9 +1,12 @@
 module Main exposing (Category, Item, Model, Msg(..), Portfolio, init, initialModel, main, subscriptions, update, view)
 
 import Browser
-import Html exposing (Html, div, h1, header, img, text)
-import Html.Attributes exposing (class, src, width)
-
+import Html exposing (..)
+import Html.Attributes exposing (attribute, class, classList, href, src, target, type_, width)
+import Html.Events exposing (onClick)
+import Http
+import Json.Decode as Decode exposing (Decoder, Value)
+import Json.Decode.Pipeline as Pipeline exposing (decode, optional, required)
 
 
 {--Model
