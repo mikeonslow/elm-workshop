@@ -81,23 +81,22 @@ You can read more about JSON decoders in package documentation:
 
 [http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Decode](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Decode)
 
->In this app, we're using a library called `elm-decode-pipeline` created by the good folks at No Red Ink. This library
->allows us to simplify decoding more complex data structures and we've chosen to use it
+>In this app, we're using a library called `elm-json-decode-pipeline` created by the good folks at NoRedInk. This library
+>allows us to simplify decoding of more complex data structures.
 
-As a reminder, we can alias a module upon import by using the `as` keyword and we're currently giving the `Json.Decode.Pipeline`
-library a namespace of `Pipeline`
+As a reminder, we can alias a `module` upon `import` by using the `as` keyword and we're currently giving the `Json.Decode.Pipeline`
+library a namespace/alias of `Pipeline`
  
 ```elm
-import Json.Decode.Pipeline as Pipeline exposing (decode, optional, required)
+import Json.Decode.Pipeline as Pipeline exposing (optional, required)
 ```
 
-Additionally, we're directly exposing three functions from the library so that we can use them without the namespace
-prefix `exposing (decode, optional, required)`
+Additionally, we're directly exposing two functions from the library so that we can use them without the namespace
+prefix `exposing (optional, required)`
 
 We're not actually using `optional` but wanted to show it is it is helpful in instances where either a.) you may not
 receive the field back from the API or the field _may_ be `null`. An optional field can be defined as follows and takes
-an additional argument which is the default value that should be substitutes should the field not exist or have a value
-of `null`. 
+an additional argument which is the default value that should be substituted should the field not exist or have a value of `null`. 
 
 ```elm
 > optional "overlayColor" Decode.string "#f9f9f9"
@@ -128,17 +127,14 @@ apiEncoder data =
           [ ("userName", Encode.string data.userName) ]
 ```
 
-More on encoders and using them can be found at the links below:
+More on encoders and using them can be found at the link below:
 
-- Package Documentation [http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Encode](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Json-Encode)
-- A Tutorial [https://github.com/alexspurling/elm-recipes/tree/master/json-encoding](https://github.com/alexspurling/elm-recipes/tree/master/json-encoding)
+- Package Documentation [https://package.elm-lang.org/packages/elm/json/latest/Json-Encode](https://package.elm-lang.org/packages/elm/json/latest/Json-Encode)
 
 #### Recap
 
-In this part, we learned more about the JSON decoders that we added in the last section as well as a brief introduction
-to encoders. 
+In this part, we learned more about the JSON decoders that we added in the last section as well as a brief introduction to encoders. 
 
-In the next section, we'll start updating our `view` function to display the data returned by the API in a meaningful
-way. 
+In the next section, we'll start updating our `view` function to display the data returned by the API in a meaningful way. 
 
 Go to [Part 7](../part7/README.md)

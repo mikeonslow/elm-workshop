@@ -65,7 +65,7 @@ We will see this when we introduce some interaction.
 
 view : Model -> Html Msg
 view model =
-    text "Let's get some data showing!!!"
+    text "Hello, World!!!"
 
 
 viewCategoryNavbar : Portfolio -> Int -> Html Msg
