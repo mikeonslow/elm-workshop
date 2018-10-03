@@ -57,13 +57,13 @@ We will see this when we introduce some interaction.
 
 view : Model -> Html Msg
 view model =
-    text (toString model)
+    text "Hello, World!!!"
 
 
 
 {--Update--
-The `update` function will be called by Html.program each time a message is received.
-This update function responds to messages (Msg), updating the model and returning commands as needed.
+The `update` function will be called by Html.program each time a message (`Msg`) is received.
+This update function responds to messages (`Msg`), updating the model and returning commands as needed.
 --}
 
 
