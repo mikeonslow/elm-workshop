@@ -116,7 +116,7 @@ can be used for something like an `x` and `y` on a grid or something more comple
 position = (50, 123)
 ```
 
->Note: Tuples are limited to 3 values, for more complex data, it's you'll want to use a `Record` instead (see details below). 
+>Note: Tuples are limited to 3 values, for more complex data, you'll want to use a `Record` instead (see details below). 
 
 ##### Records
 
