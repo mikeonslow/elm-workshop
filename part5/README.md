@@ -9,8 +9,7 @@ In this part, we'll use the `Http` library to send a request to the API and crea
 message by modifying the `update` function to use a `case` expression to route our updates based on the `Msg` that was
 sent.
 
->Messages can be sent by user input (onClick etc.), as the result of a command (`Cmd`) or as the result of a subscription 
-(`Sub`)  
+>Messages can be sent by user input (onClick etc.), as the result of a command (`Cmd`) or as the result of a subscription (`Sub`)  
 
 So now we know that we want to route messages that come back from the API to `ApiResponse`, so how do we go about doing that?
 
@@ -42,19 +41,19 @@ receives the `response` from the API.
 ```elm
         ApiResponse response ->
             case response of
-                Ok response ->
+                Ok portfolio ->
                     let
                         updatedModel =
-                            { model | portfolio = response }
+                            { model | portfolio = portfolio }
                     in
                     ( updatedModel, Cmd.none )
 
                 Err error ->
                     let
-                        errorMessage =
-                            "An error occurred: " ++ toString error
+                        updatedModel =
+                            { model | errorMessage = "An error occurred while attempted to fetch your portfolio" }
                     in
-                    ( { model | errorMessage = errorMessage }, Cmd.none )
+                    ( updatedModel, Cmd.none )
 ```
 
 So, we're now updating the `Model` if we get an `Ok response` as the result from `Http.send` if we get an `Err error` however
