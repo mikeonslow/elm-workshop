@@ -15,61 +15,13 @@ couple of nice to have features that we could of added, should we have had the t
 The first one is to use the `RemoteData` library and pattern to show the user friendly states for loading,
  success, error when we reach out to the API. 
  
-The `RemoteData` package documentation is located here: 
+The `RemoteData` package documentation is located here (this may not be updated for Elm 0.19): 
 [http://package.elm-lang.org/packages/krisajenkins/remotedata/latest](http://package.elm-lang.org/packages/krisajenkins/remotedata/latest)
 
 Kris Jenkins, the creator of this library also wrote a blog post on why he made the library
  and how's it's used: [How Elm Slays a UI Antipattern](http://blog.jenkster.com/2016/06/how-elm-slays-a-ui-antipattern.html)
 
 Lastly, a basic example of using this pattern was created in Ellie: [https://ellie-app.com/3r2wFkFJBr6a1/0](https://ellie-app.com/3r2wFkFJBr6a1/0)
-
-##### Using `programWithFlags` to pass in our URL
- 
- Using `programWithFlags` to pass in our API URL to our app would make our portfolio 
- more embed friendly so that it could be embedded anywhere with ease. We would also want to update our
- `index.html` file a bit to embed the Elm app in an element on the page instead of using `Elm.Main.fullscreen()`
-
-###### Updating our app to `programWithFlags`
-
-We need to update our `main` function to using `Html.programWithFlags` instead of `Html.program`, we can
-replace our `main` function with the following code to accomplish this:
-
-```elm
-main : Program String Model Msg
-main =
-    Html.programWithFlags
-        { view = view
-        , update = update
-        , init = init
-        , subscriptions = subscriptions
-        }
-```
-
-Here we've also removed our hardcoded `String` value for the API URL passed into `init` 
-as `programWithFlags` with automatically pass in it's input into this function. 
-
-We need to make one more update to make this work and for that, we'll edit our `index.html` file in `part9`
-
-We'll replace our `<body>...</body>` with the following:
-
-```html
-<body>
-<div id="elmfolio"></div>
-<script type="text/javascript">
-    var elmApp = Elm.Main.embed(document.getElementById('elmfolio'), "https://www.mocky.io/v2/59f8cfa92d0000891dad41ed");
-</script>
-</body>
-```
-
-The change here is two-fold, we're now using `embed()` instead of `fullscreen()` as well as
- passing in the API URL as the second argument to `embed()`
- 
->Note: We also added a `<div>` with an `id`which will become our applications starting point in the page
->
->`<div id="elmfolio"></div>`
-
-After these changes have been made, running `elm-live Main.elm --output=static/js/elm.js --pushstate --open --debug`
-should yield the same result on the screen which is our fully functioning app.
 
 ##### Adding animations to transition between states
 
