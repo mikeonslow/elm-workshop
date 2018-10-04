@@ -10,7 +10,7 @@ import Json.Decode.Pipeline as Pipeline exposing (optional, required)
 
 
 {--Model
-The `initialModel` function initializes our Model. This function is called in `init` and outputs a Model
+The `initialModel` function initializes our `Model`. This function is called in `init` and outputs a `Model`
 --}
 
 
@@ -343,11 +343,11 @@ subscriptions =
 
 
 
+
 {--Program setup and initialization--}
 {--
 The `main` function is the entry point for our app which means it's the first thing that is run
 --}
---main : Program Never Model Msg
 
 
 main =
@@ -364,13 +364,8 @@ main =
 our app's initial state as well as scheduling any commands we'd like to run after the app starts
 up. For now, we don't need to run any commands so we'll use Cmd.none here.
 --}
---init : String -> ( Model, Cmd Msg )
 
 
-init : () -> ( Model, Cmd Msg )
-init _ =
-    ( initialModel apiUrl, getPortfolio apiUrl )
-
-
-apiUrl =
-    "https://www.mocky.io/v2/59f8cfa92d0000891dad41ed"
+init : { apiUrl : String } -> ( Model, Cmd Msg )
+init flags =
+    ( initialModel flags.apiUrl, getPortfolio flags.apiUrl )
