@@ -107,7 +107,7 @@ The `main` function is the entry point for our app which means it's the first th
 ```elm
 main : Program Never Model Msg
 main =
-    Html.program
+    Browser.element
         { view = view
         , update = update
         , init = init
