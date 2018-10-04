@@ -57,9 +57,9 @@ You may or may not have put together a connection between the `id` field in each
 
 #### Modelling with Type Aliases
 
-A `type alias` is a name that refers to a previously defined Type *or* Record. 
+A `type alias` is a name that refers to a previously defined Type *or* `Record`. 
 
-In our case, we'll likely want to model each of the types we found above with a Record.
+In our case, we'll likely want to model each of the types we found above with a `Record`.
 
 In our `Main.elm` file, let's go ahead and add a new `type alias` for both `Category` and `Item` line 20
 just below 
@@ -123,26 +123,10 @@ initialModel =
     { portfolio = { categories = [], items = [] } }
 ```
 
-Lastly, let's get rid of our "Hello World!!!" in our `view` function and actually output the active `Model` to the
-screen.
-
-Update the `view` function as follows:
-
-```elm
-view model =
-    text (toString model)
-```
-
-Now if we run `npm start` we should see the following instead of "Hello World!!!" in the upper left corner of our screen.
-
-`{ portfolio = { categories = [], items = [] } }`
-
->`toString model` is a handy trick, especially before you've really fleshed out your `view`
-
 #### Recap
 In this part, we learned a little bit about types and type aliases and updated our Elm code based on
 the app's requirements. 
 
-Next we'll learn a bit about "union types" and make some additional to both our `Msg` type and our `update` function 
+Next we'll learn a bit about Elm's "custom types" and make some additional changes to both our `Msg` type and our `update` function 
 
 Go to [Part 4](../part4/README.md)

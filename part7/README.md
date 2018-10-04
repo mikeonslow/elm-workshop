@@ -5,8 +5,7 @@ Back to [Part 6](../part6/README.md)
 
 >Before getting started with this part, be sure to `cd` into the directory `part7` in your project and open the `Main.elm` file
 
-In this section, we'll be updating our `view` function to display the data returned by the API in a meaningful
-way. 
+In this section, we'll be updating our `view` function to display the data returned by the API in a meaningful way. 
 
 >A note before we start. Instead of using HTML tags like `<a>`, `<div>`, `<i>` etc. we use functions in Elm to produce these
 same outputs on the screen. Almost all of these functions have the same type signature to make them easily
@@ -27,7 +26,7 @@ depending on what the value of the attribute will look like but as with most Elm
 be standardized as much as possible to avoid confusion `h1 [ attributeOne argument, attributeTwo argument, ...]`
 
 So with that, let's start updating our `view` function. Let's remove the code we currently have
-in the function `text (toString model)` and replace it with the following view code, then save the file:
+in the function `text "Hello, World!!!"` and replace it with the following view code, then save the file:
 
 ```elm
 view : Model -> Html Msg
@@ -61,7 +60,7 @@ view model =
         ]
 ```
 
->Notice we've added some of the `view` helpers code to the file as these don't add much in the way of teaching concepts, however, 
+>Notice we've automatically added some of the `view` helpers code to the file as these don't add much in the way of teaching concepts, however, 
 it's likely valuable to analyse these once the workshop is completed and you have a working Elm app. If you have any questions
 about how these functions work, or what they are doing, feel free to ask your instructors during the wrap up time. 
 
@@ -119,14 +118,12 @@ initialModel url =
     }
 ```
 
->Notice we just added the two new fields and initialized them both to `Nothing` to show that we do not have a value
-until the user actually clicks on a `Category` and/or `Item` in the UI
+>Notice we just added the two new fields and initialized them both to `Nothing` to show that we do not have a value until the user actually clicks on a `Category` and/or `Item` in the UI
 
 We've automatically added two new helper functions `getSelectedCategoryId` and `getSelectedItem` to determine the states of our selected
 `Category` and selected `Item`. Time permitting, we'll review these once we complete the app and have it running. 
 
-Okay, so now we should be able to run `elm-live Main.elm --output=static/js/elm.js --pushstate --open --debug`
-in a terminal and start seeing the fruits of our all of our hard work. You should see something similar
+Okay, so now we should be able to run `npm start` in a terminal and start seeing the fruits of our all of our hard work. After opening http://localhost:8000, you should see something similar
 to the screenshot below upon the app being opened in a browser:
 
 ![App Preview](../static/images/app.png)

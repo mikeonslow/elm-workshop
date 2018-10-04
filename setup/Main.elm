@@ -1,29 +1,24 @@
-module Main exposing (..)
+module Main exposing (Model, Msg(..), main, update, view)
 
 {-| THIS FILE IS NOT PART OF THE COURSE! It is only to verify that you
 have everything set up properly.
 -}
 
+import Browser
 import Html exposing (Html, div, h1, header, img, text)
 import Html.Attributes exposing (class, src)
 
 
-main : Program Never Model Msg
-main =
-    Html.program
-        { view = view
-        , update = update
-        , init = ( initialModel, Cmd.none )
-        , subscriptions = \_ -> Sub.none
-        }
-
-
-initialModel : Model
-initialModel =
+type alias Model =
     {}
 
 
-type alias Model =
+type Msg
+    = None
+
+
+init : Model
+init =
     {}
 
 
@@ -36,10 +31,14 @@ view model =
         ]
 
 
-type Msg
-    = None
-
-
-update : Msg -> Model -> ( Model, Cmd Msg )
+update : Msg -> Model -> Model
 update msg model =
-    ( model, Cmd.none )
+    model
+
+
+main =
+    Browser.sandbox
+        { init = init
+        , view = view
+        , update = update
+        }

@@ -1,4 +1,4 @@
-module Main exposing (..)
+module Main exposing (Category, Item, Model, Msg(..), Portfolio, categoryDecoder, getPortfolio, getSelectedCategoryId, getSelectedItem, init, initialModel, itemDecoder, main, portfolioDecoder, subscriptions, update, view, viewCategoryButton, viewCategoryNavbar, viewError, viewItem, viewItems, viewSelectedItem)
 
 import Html exposing (..)
 import Html.Attributes exposing (attribute, class, classList, href, src, target, type_, width)

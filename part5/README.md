@@ -9,8 +9,7 @@ In this part, we'll use the `Http` library to send a request to the API and crea
 message by modifying the `update` function to use a `case` expression to route our updates based on the `Msg` that was
 sent.
 
->Messages can be sent by user input (onClick etc.), as the result of a command (`Cmd`) or as the result of a subscription 
-(`Sub`)  
+>Messages can be sent by user input (onClick etc.), as the result of a command (`Cmd`) or as the result of a subscription (`Sub`)  
 
 So now we know that we want to route messages that come back from the API to `ApiResponse`, so how do we go about doing that?
 
@@ -42,19 +41,19 @@ receives the `response` from the API.
 ```elm
         ApiResponse response ->
             case response of
-                Ok response ->
+                Ok portfolio ->
                     let
                         updatedModel =
-                            { model | portfolio = response }
+                            { model | portfolio = portfolio }
                     in
                     ( updatedModel, Cmd.none )
 
                 Err error ->
                     let
-                        errorMessage =
-                            "An error occurred: " ++ toString error
+                        updatedModel =
+                            { model | errorMessage = "An error occurred while attempted to fetch your portfolio" }
                     in
-                    ( { model | errorMessage = errorMessage }, Cmd.none )
+                    ( updatedModel, Cmd.none )
 ```
 
 So, we're now updating the `Model` if we get an `Ok response` as the result from `Http.send` if we get an `Err error` however
@@ -119,28 +118,24 @@ getPortfolio url =
 
 This function takes in a `String` for the API URL and returns a command `Cmd Msg`.
 
-We'll use this in the `init` function to schedule the command to call out to the API.
+We'll use this in the `init` function and pass in the API URL at app startup using Elm's flags. Then schedule the command to call out to the API based on that URL.
 
 Let's do this now as well as passing in the API URL to `initialModel` and scheduling our
-command to call out to the API:
+command to call out to the API. Currently out `init` function looks like this:
 
 ```elm
-init : String -> ( Model, Cmd Msg )
-init url =
-    ( initialModel url, getPortfolio url )
+init : () -> ( Model, Cmd Msg )
+init _ =
+    ( initialModel, Cmd.none )
 ```
 
-We also need to update the call to `init = init` in the `main` function:
+The `()` in the type signature means we're not interested in the flags coming into the app (or aren't expecting anything to be passed), The `_` in the place of the first parameter of the `init1 function means we're not planning to use the input in the scope of this function. We'll want to update this code to state to both identify the shape of data that we're expecting to this function as 
+well as specify a name for that value in local scope. For now, let's assume the app will be passed a JavaScript object (which translates to a `Record` in Elm), with one field for `apiUrl`, we can update our init function as follows to accomplish that:
 
 ```elm
-main : Program Never Model Msg
-main =
-    Html.program
-        { view = view
-        , update = update
-        , init = init "https://www.mocky.io/v2/59f8cfa92d0000891dad41ed"
-        , subscriptions = subscriptions
-        }
+init : { apiUrl : String } -> ( Model, Cmd Msg )
+init flags =
+    ( initialModel flags.apiUrl, getPortfolio flags.apiUrl )
 ```
 
 Once `init` is updated, we need to add decoders to our file to translate the JSON object returned by
@@ -174,28 +169,30 @@ itemDecoder =
         |> required "linkUrl" Decode.string
         |> required "description" Decode.string
         |> required "overlayColor" Decode.string
-
-
-
--- Helpers
-
-
-(=>) : a -> b -> ( a, b )
-(=>) =
-    (,)
 ```
 
-We'll discuss decoders more in the next section, but for, now let's run:
+We'll discuss decoders more in the next section.
 
-`nom start`
+The final step to this process is to update the code in `index.html` to pass in our `apiUrl` flag, open `index.html` and update the section of the file that initializes the Elm app from:
 
-If things are working properly, we we'll see a massive wall of text with the data returned from the API
+```html
+        var app = Elm.Main.init({
+            node: document.getElementById('elm')
+        });
+```
 
-This is where that little trick in `text (toString model)` in the `view` function becomes less valuable
-and the Elm debugger comes in handy.
+to
 
-In this part, we've added the `--debug` flag to the Elm compile (`npm start` is running this automatically), 
-which will compile the app with debug mode enabled. If this worked, you should see a small black UI at the bottom, 
+```html
+        var app = Elm.Main.init({
+            node: document.getElementById('elm'),
+            flags: { "apiUrl": "https://www.mocky.io/v2/59f8cfa92d0000891dad41ed" }
+        });
+```
+
+And then run `npm start` and open the app in a web browser: http://localhost:8000.
+
+If things are working properly, we can use Elm's debugger to view the app's `Model`. If all all is well, once you open the app in your browser, you should see a small black UI at the bottom, 
 right-hand side of your screen:
 
 ![Elm Debugger](static/images/elm-debugger.png)
@@ -207,8 +204,7 @@ You can click "Explore History" to view details about your app as it runs:
 Here we can see that our `update` function ran once and routed to the message `ApiResponse Ok ...` and we can see that 
 the `portfolio` field in our `Model` populated with lists of `Category` and `Item` successfully. 
  
->One shortcoming of the Elm debugger is that it does not show the entire `Msg` passed in. We believe
-this will be addressed in the next release of the debugger but are not certain.
+>One shortcoming of the Elm debugger is that it does not show the entire `Msg` passed in. We believe this will be addressed in the next release of the debugger but are not certain.
 
 #### Recap
 
