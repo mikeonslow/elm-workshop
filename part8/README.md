@@ -82,8 +82,7 @@ we're taking in a `Msg` and a `Model`, updating that `Model` accordingly by crea
 `updatedModel` since values in Elm are immutable and then _scheduling_ any necessary commands (we don't
 need to run any commands here so we use `Cmd.none`).
 
-At this point, if we run: `elm-live Main.elm --output=static/js/elm.js --pushstate --open --debug`, we
-should be able to click around on both categories as well as items and update the rendered HTML:
+At this point, if we run: `npm start`, we should be able to click around on both categories as well as items and update the rendered HTML:
 
 ![App Preview](../static/images/app-item-selected.png)
 
