@@ -3,7 +3,7 @@ Back to [Part 1](../part1/README.md)
 
 # Introduction to Elm (Part 2)
 
->Before getting started with this part, be sure to `cd` into the directory `part2` in your project and open the `Main.elm` file
+>Before getting started with this part, be sure to `cd` into the directory `part2` in your project run `npm install` and then open the `Main.elm` file
 
 In this part, we'll start off with the basic frame of the app and look at each section.
 

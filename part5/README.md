@@ -3,7 +3,7 @@ Back to [Part 4](../part4/README.md)
 
 # Introduction to Elm (Part 5)
 
->Before getting started with this part, be sure to `cd` into the directory `part5` in your project and open the `Main.elm` file
+>Before getting started with this part, be sure to `cd` into the directory `part5` in your project run `npm install` and then open the `Main.elm` file.
 
 In this part, we'll use the `Http` library to send a request to the API and create the code necessary to receive that
 message by modifying the `update` function to use a `case` expression to route our updates based on the `Msg` that was
